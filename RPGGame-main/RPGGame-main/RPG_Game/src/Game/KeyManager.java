@@ -40,6 +40,9 @@ public class KeyManager implements KeyListener{
 
 	@Override
 	public void keyPressed(KeyEvent e) {
+		if (e.getKeyCode() >= keys.length) {
+			return;
+		}
 		if(current != e.getKeyCode() && current != -1) { //has current, move current to backup
 			backup = current;
 			keys[backup] = false;
@@ -50,6 +53,9 @@ public class KeyManager implements KeyListener{
 
 	@Override
 	public void keyReleased(KeyEvent e) {
+		if (e.getKeyCode() >= keys.length) {
+			return;
+		}
 		if(backup != -1) { //if you are pressing more than one key
 			
 			if(e.getKeyCode() != backup) {  //release current, backup becomes current
