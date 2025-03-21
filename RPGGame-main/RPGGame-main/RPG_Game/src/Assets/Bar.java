@@ -21,11 +21,13 @@ public class Bar {
 	private ArrayList<MonsterBar> monsterBars;
 	public static int monsterBarWidth = 40;
 	public static boolean[] ids = new boolean[100];
+	private Handler handler;
 	
 	public Bar(Handler handler) {
 		barWidth = 1;
 		barHeight = 50;
 		monsterBars = new ArrayList<>();
+		this.handler = handler;
 	}
 	
 	private boolean render;
@@ -39,7 +41,7 @@ public class Bar {
 			barsShown = 0;
 			for(int i = 0; i < 3; i++) {
 				barsLeft++;
-				monsterBars.add(new MonsterBar(60, 85, 1.5f, 2.7f, 1000, 2500, i));
+				monsterBars.add(new MonsterBar(60, 85, 1.5f, 2.7f, 1000, 2500, i, handler));
 				randomX2 = (int)(Math.random() * (600 - monsterBarWidth - 2) + 100);
 			}
 		}

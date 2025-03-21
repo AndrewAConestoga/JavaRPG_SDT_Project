@@ -41,8 +41,8 @@ public class BattleState extends State{
 		this.handler = handler;
 		bar = new Bar(handler);
 		
-		monsters.add(new Monster("Green Slime", Assets.monsters[0], 38 * 4, 27 * 4, 440, 160, 50, 20, 1, handler));
-		//monsters.add(new Monster("Angry Radish", Assets.monsters[1], 23 * 4, 41 * 4, 480, 110, 1, 20, 1));
+		// monsters.add(new Monster("Green Slime", Assets.monsters[0], 38 * 4, 27 * 4, 440, 160, 50, 20, 1, handler));
+		monsters.add(new Monster("Angy Radish", Assets.monsters[1], 23 * 4, 41 * 4, 480, 110, 10, 20, 9, handler));
 		
 		monster = monsters.get(0);
 		inGamePlayer = new InGamePlayer(handler);
@@ -106,6 +106,9 @@ public class BattleState extends State{
 	}
 	
 	private void switchToGameState() {
+		if (Game.player.health > 0) {
+			handler.savePlayer();
+		}
 		encounterFlag = true;
 		handler.getMouseManager().setUIManager(null);
 		Transition.canStart = false;

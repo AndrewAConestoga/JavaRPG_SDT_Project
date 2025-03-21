@@ -1,9 +1,15 @@
 package Game;
 
+import Assets.Player;
+import Memento.PlayerCaretaker;
+import Memento.PlayerOriginator;
+
 public class Handler {
 
 	private Game game;
 	private World world;
+	private PlayerOriginator pOriginator = new PlayerOriginator();
+	private PlayerCaretaker pCaretaker = new PlayerCaretaker();
 	
 	public Handler(Game game) {
 		this.game = game;
@@ -43,6 +49,23 @@ public class Handler {
 
 	public void setWorld(World world) {
 		this.world = world;
+	}
+	
+	public PlayerOriginator getPlayerOriginator() {
+		return pOriginator;
+	}
+	
+	public PlayerCaretaker getPlayerCaretaker() {
+		return pCaretaker;
+	}
+	
+	public void savePlayer() {
+		pOriginator.set(Game.player);
+		pCaretaker.addMemento(pOriginator.storeInMemento());
+	}
+	
+	public Player loadPlayer() {
+		return pCaretaker.getLatestMemento().getSavedPlayer();
 	}
 	
 }

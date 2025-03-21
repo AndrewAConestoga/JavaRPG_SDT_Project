@@ -16,11 +16,9 @@ public class Description {
 	private int baseHealth;
 	private int health;
 	private int type;
-	private Handler handler;
 	
 	public Description(int type, String name, int health, int baseHealth, int level, int x, int y, Handler handler) {
 		nameText = new Text(name, x - 4, y + 22, 4, -1);
-		this.handler = handler;
 		this.type = type;
 		this.name = name;
 		this.level = level;

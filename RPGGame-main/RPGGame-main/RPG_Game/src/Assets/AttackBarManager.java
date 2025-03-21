@@ -7,6 +7,7 @@ import java.awt.Graphics2D;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import Game.Game;
 import Game.Handler;
 import ImageStuff.Animation;
 import States.BattleState;
@@ -229,7 +230,7 @@ public class AttackBarManager {
 		
 		if(!MonsterBar.touchingBar) {
 			renderRedText = true;
-			Player.health -= 10;
+			Game.player.health -= 10;
 			redDamageText = new Text("-10", (int)AttackBarManager.xVel - 35, 635, 4, 3);
 			i = 0;
 		} else {

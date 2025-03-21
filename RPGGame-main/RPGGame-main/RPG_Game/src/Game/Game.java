@@ -4,6 +4,7 @@ import java.awt.Graphics;
 
 import java.awt.image.BufferStrategy;
 import Assets.Assets;
+import Assets.Player;
 import Assets.Transition;
 import States.BattleState;
 import States.GameState;
@@ -23,6 +24,7 @@ public class Game implements Runnable{
 	public static boolean flag = false;
 	public static boolean flag2 = false;
 	public static boolean battling = false;
+	public static Player player;
 	
 	private Thread thread; //own separate game loop
 	
@@ -30,7 +32,7 @@ public class Game implements Runnable{
 	private Graphics g;
 	
 	//States
-	public State gameState;
+	public GameState gameState;
 	public State menuState;
 	public State battleState;
 	
@@ -70,6 +72,7 @@ public class Game implements Runnable{
 		Assets.init();
 		
 		handler = new Handler(this);
+		player = new Player(0,0, handler);
 		gameCamera = new GameCamera(handler, 0, 0);
 		
 		gameState = new GameState(handler);

@@ -4,6 +4,7 @@ import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.Comparator;
 
+import Game.Game;
 import Game.Handler;
 
 public class EntityManager {
@@ -23,9 +24,9 @@ public class EntityManager {
 		
 	};
 	
-	public EntityManager(Handler handler, Player player) {
+	public EntityManager(Handler handler) {
 		this.handler = handler;
-		this.player = player;
+		this.player = Game.player;
 		entities = new ArrayList<Entity>();
 		addEntity(player);
 	}

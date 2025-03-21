@@ -3,6 +3,7 @@ package Assets;
 import java.awt.Color;
 import java.awt.Graphics;
 
+import Game.Game;
 import Game.Handler;
 
 public class InGamePlayer {
@@ -12,7 +13,7 @@ public class InGamePlayer {
 	
 	public InGamePlayer(Handler handler) {
 		this.handler = handler;
-		description = new Description(1, Player.name, Player.health, Player.baseHealth, Player.level, 392, 396, handler);
+		description = new Description(1, Game.player.name, Game.player.health, Game.player.baseHealth, Game.player.level, 392, 396, handler);
 	}
 	
 	public void tick() {

@@ -28,7 +28,7 @@ public class HealthBar {
 		this.type = type;
 		this.x = x;
 		this.y = y;
-		healthText = new Text(Player.health + "/" + Player.baseHealth, x + 152, y + 80, 4, 1);
+		healthText = new Text(Game.player.health + "/" + Game.player.baseHealth, x + 152, y + 80, 4, 1);
 		transition = new Transition();
 	}
 	
@@ -45,9 +45,9 @@ public class HealthBar {
 			}
 			healthText.setHealth(Monster.health, Monster.baseHealth);
 		} else if(type == 1){
-			if(Player.health <= 0) {
+			if(Game.player.health <= 0) {
 				BattleState.encounterFlag = true;
-				Player.health = 0;
+				Game.player.health = 0;
 				handler.getMouseManager().setUIManager(null);
 				Transition.canStart = false;
 				Game.flag2 = false;
@@ -55,21 +55,24 @@ public class HealthBar {
 				BattleState.switchGameStates = true;
 				
 				if(i > 100) {
+					
+					Player checkpoint = handler.getPlayerCaretaker().getLatestMemento().getSavedPlayer();
+					
 					State.setState(handler.getGame().gameState);
-					Player.health = 100;
-					GameState.coins = 0;
-					GameState.xp = 0;
+					Game.player.health = checkpoint.baseHealth;
+					Game.player.coins = checkpoint.coins;
+					Game.player.xp = checkpoint.xp;
 					handler.getGameCamera().setxOffset(0);
 					handler.getGameCamera().setyOffset(0);
 					handler.getWorld().getEntityManager().getPlayer().setX(24 * Tile.TILEWIDTH + 10);
 					handler.getWorld().getEntityManager().getPlayer().setY(48 * Tile.TILEHEIGHT + 16);
-					Player.dir = 1;
+					Game.player.dir = 1;
 					Creature.xPosition = 0;
 					Creature.yPosition = 0;
 				}
 				
 			}
-			healthText.setHealth(Player.health, Player.baseHealth);
+			healthText.setHealth(Game.player.health, Game.player.baseHealth);
 		}
 	}
 	
@@ -89,8 +92,8 @@ public class HealthBar {
 			combinedDamage = Monster.baseHealth - Monster.health;
 			baseHealth = Monster.baseHealth;
 		} else if(type == 1) {
-			combinedDamage = Player.baseHealth - Player.health;
-			baseHealth = Player.baseHealth;
+			combinedDamage = Game.player.baseHealth - Game.player.health;
+			baseHealth = Game.player.baseHealth;
 		}
 		
 		Color c = new Color(0, 255, 0);
@@ -116,7 +119,7 @@ public class HealthBar {
 		
 		c = new Color(0, 245, 0);
 		g.setColor(c);
-		for(int i = 0; i < inGameHPWidth - (inGameHPWidth / 100 * (Player.baseHealth - Player.health)); i++) {
+		for(int i = 0; i < inGameHPWidth - (inGameHPWidth / 100 * (Game.player.baseHealth - Game.player.health)); i++) {
 			g.fillRect(x + 70 + i , y, 1, 44);
 		}
 	}

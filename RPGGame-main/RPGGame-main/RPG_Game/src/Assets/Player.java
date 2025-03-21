@@ -17,13 +17,15 @@ import Assets.Tile;
 public class Player extends Creature {
 
 	private Animation animDown, animUp, animLeft, animRight;
-	public static int dir = 1;
-	public static float xPosition;
-	public static float yPosition;
-	public static int health;
-	public static int baseHealth;
-	public static int level;
-	public static String name;
+	public int dir = 1;
+	public float xPosition;
+	public float yPosition;
+	public int health;
+	public int baseHealth;
+	public int level;
+	public int coins;
+	public int xp;
+	public String name;
 
 	private boolean flag;
 	private boolean flag2;
@@ -31,7 +33,7 @@ public class Player extends Creature {
 	private int a;
 	private int b;
 
-	public Player(Handler handler, float x, float y) {
+	public Player(float x, float y, Handler handler) {
 		super(handler, x, y, Creature.PLAYER_WIDTH, Creature.PLAYER_HEIGHT);
 
 		bounds.x = 0;
@@ -49,6 +51,10 @@ public class Player extends Creature {
 		animLeft = new Animation(120, Assets.player_left);
 		animRight = new Animation(120, Assets.player_right);
 
+	}
+	
+	public String toString() {
+		return dir + "," + xPosition + "," + yPosition + "," + health + "," + baseHealth + "," + level + "," + coins + "," + xp + "," + name + "," + flag + "," + flag2 + "," + flag3 + "," + a + "," + b;
 	}
 
 	@Override

@@ -61,9 +61,9 @@ public class Assets {
 		trees[2] = treeSheet.crop(0, height * 3 + 10, width * 3, height * 3);
 		trees[3] = treeSheet.crop(width * 3, height * 3 + 10, width * 3, height * 3);
 		
-		monsters = new BufferedImage[1];
+		monsters = new BufferedImage[2];
 		monsters[0] = monsterSheet.crop(0, 0, 38, 27);
-		//monsters[1] = monsterSheet.crop(0, 27, 23, 41);
+		monsters[1] = monsterSheet.crop(0, 27, 23, 41);
 		
 		player_down = new BufferedImage[4];
 		player_up = new BufferedImage[4];

@@ -7,6 +7,8 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Stroke;
 
+import Game.Game;
+import Game.Handler;
 import States.BattleState;
 
 public class MonsterBar {
@@ -23,8 +25,9 @@ public class MonsterBar {
 	private boolean destroyed;
 	public static boolean touchingBar;
 	private Text redDamageText;
+	private Handler handler;
 	
-	public MonsterBar(float minWidth, float maxWidth, float minSpeed, float maxSpeed, int minTimer, int maxTimer, int id) {
+	public MonsterBar(float minWidth, float maxWidth, float minSpeed, float maxSpeed, int minTimer, int maxTimer, int id, Handler handler) {
 		this.width = (float)(minWidth + (Math.random() * (maxWidth - minWidth)));
 		this.speed = (float)(minSpeed + (Math.random() * (maxSpeed - minSpeed)));
 		this.x = 700;
@@ -105,7 +108,7 @@ public class MonsterBar {
 				redDamageText.setY(640 - i / 2);
 				if(!f) {
 					f = true;
-					Player.health -= 20;
+					Game.player.health -= 20;
 				}
 			} else {
 				f = false;
