@@ -3,6 +3,7 @@ package States;
 import java.awt.Color;
 
 import java.awt.Graphics;
+import java.io.Console;
 import java.util.ArrayList;
 
 import Assets.Arrow;
@@ -11,7 +12,9 @@ import Assets.AttackBarManager;
 import Assets.Bar;
 import Assets.InGamePlayer;
 import Assets.Monster;
+import Assets.MonsterInterface;
 import Assets.Transition;
+import Decorator.HealthyMonster;
 import Game.Handler;
 import Game.UIImageButton;
 import Game.UIManager;
@@ -22,8 +25,8 @@ import Game.Game;
 public class BattleState extends State{
 	Handler handler;
 	Bar bar;
-	ArrayList<Monster> monsters = new ArrayList<>();
-	Monster monster;
+	ArrayList<MonsterInterface> monsters = new ArrayList<>();
+	MonsterInterface monster;
 	InGamePlayer inGamePlayer;
 	AttackBarManager attackBarManager;	
 	private UIManager uiManager;
@@ -41,10 +44,22 @@ public class BattleState extends State{
 		this.handler = handler;
 		bar = new Bar(handler);
 		
-		// monsters.add(new Monster("Green Slime", Assets.monsters[0], 38 * 4, 27 * 4, 440, 160, 50, 20, 1, handler));
-		monsters.add(new Monster("Angy Radish", Assets.monsters[1], 23 * 4, 41 * 4, 480, 110, 10, 20, 9, handler));
 		
-		monster = monsters.get(0);
+		Monster radishMonster = new Monster("Bad Radish", Assets.monsters[1], 23 * 4, 41 * 4, 480, 110, 10, 20, 1, handler);
+
+
+		monsters.add(radishMonster);
+		System.out.println("Added regular radish");
+		HealthyMonster healthyRadish = new HealthyMonster(radishMonster, 20);
+		monsters.add(healthyRadish);
+		System.out.println("Added healthy radish");
+		monsters.add(new Monster("Green Slime", Assets.monsters[0], 38 * 4, 27 * 4, 440, 160, 30, 20, 1, handler));
+		System.out.println("Added green slime");
+		
+	
+		int randomMonster = (int) (Math.random() * monsters.size());
+		System.out.println("random Monster number:" + randomMonster);
+		monster = monsters.get(randomMonster);
 		inGamePlayer = new InGamePlayer(handler);
 		attackBarManager = new AttackBarManager(handler);
 		switchGameStates = false;

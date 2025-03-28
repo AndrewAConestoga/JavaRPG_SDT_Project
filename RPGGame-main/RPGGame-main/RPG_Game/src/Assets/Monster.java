@@ -12,7 +12,7 @@ import Game.Handler;
 import States.BattleState;
 import States.GameState;
 
-public class Monster {
+public class Monster implements MonsterInterface{
 	
 	protected BufferedImage img;
 	private int width;
@@ -24,6 +24,7 @@ public class Monster {
 	private int money;
 	private int xp;
 	private Handler handler;
+	private static String name;
 	
 	private Text defeatText;
 	private Text text;
@@ -39,6 +40,7 @@ public class Monster {
 		this.img = img;
 		this.width = width;
 		this.height = height;
+		this.name = name;
 		this.health = health;
 		this.baseHealth = health;
 		this.money = (level * 4) + (int)(Math.random() * (level * 3) + 1);
@@ -139,12 +141,6 @@ public class Monster {
 		g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, opacity));
 	}
 	
-	public int getHealth() {
-		return health;
-	}
-	
-	
-	
 	int i = 0;
 	private void moveEffect() {
 		if(AttackBarManager.slash) {
@@ -182,6 +178,20 @@ public class Monster {
 		} else {
 			i = 0;
 		}
+	}
+	@Override
+	public int getHealth() {
+		return health;
+	}
+
+	@Override
+	public void setHealth(int health) {
+		this.health = health;
+	}
+
+	@Override
+	public void setBaseHealth(int health) {
+		this.baseHealth = health;
 	}
 	
 	

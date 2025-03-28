@@ -34,6 +34,14 @@ public class Description {
 	public Description(int type, String name, int health, int baseHealth, int level, Handler handler) {
 		this(type, name, health, baseHealth, level, 0, 0, handler);
 	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
 	
 	public void tick() {
 		healthBar.tick();
