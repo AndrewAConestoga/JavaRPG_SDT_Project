@@ -18,7 +18,7 @@ public class XPBar {
 	public XPBar(int x, int y) {
 		this.x = x;
 		this.y = y;
-		healthText = new Text(Game.player.health + "/" + Game.player.baseHealth, x + 152, y + 80, 4, 1);
+		healthText = new Text(Game.sPlayer.health + "/" + Game.sPlayer.baseHealth, x + 152, y + 80, 4, 1);
 	}
 	
 	public void tick() {
@@ -39,7 +39,7 @@ public class XPBar {
 		
 		c = new Color(0, 0, 255);
 		g.setColor(c);
-		for(int i = 0; i < Game.player.xp * 10; i++) {
+		for(int i = 0; i < Game.sPlayer.xp * 10; i++) {
 			g.fillRect(x + 88 + i , y + 44, 2, 20);
 		}
 

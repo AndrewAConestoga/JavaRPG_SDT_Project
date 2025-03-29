@@ -29,7 +29,7 @@ public class Tree extends Entity{
 	public void render(Graphics g) {
 		g.drawImage(Assets.trees[type], (int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
 		
-		if(Game.showHitboxes) {
+		if(Game.sShowHitboxes) {
 			g.setColor(Color.red);
 			g.drawRect((int) (x + bounds.x - handler.getGameCamera().getxOffset()), (int) (y + bounds.y - handler.getGameCamera().getyOffset()), bounds.width, bounds.height);
 		}

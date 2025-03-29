@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import Game.Game;
 import Game.Handler;
 import States.BattleState;
-import States.GameState;
 
 public class Monster implements MonsterInterface{
 	
@@ -24,7 +23,7 @@ public class Monster implements MonsterInterface{
 	private int money;
 	private int xp;
 	private Handler handler;
-	private static String name;
+	private String name;
 	
 	private Text defeatText;
 	private Text text;
@@ -41,8 +40,8 @@ public class Monster implements MonsterInterface{
 		this.width = width;
 		this.height = height;
 		this.name = name;
-		this.health = health;
-		this.baseHealth = health;
+		Monster.health = health;
+		Monster.baseHealth = health;
 		this.money = (level * 4) + (int)(Math.random() * (level * 3) + 1);
 		this.xp = (level * 4) + (int)(Math.random() * (level * 3) + 1);
 		deathState = 0;
@@ -107,7 +106,7 @@ public class Monster implements MonsterInterface{
 			}
 		} else if(deathState == 3) {
 			if(!f) {
-				Game.player.coins += money;
+				Game.sPlayer.coins += money;
 				f = true;
 			}
 			rewardsText.render(g);
@@ -115,7 +114,7 @@ public class Monster implements MonsterInterface{
 			//BattleState.switchGameStates = true;
 		} else if(deathState == 4) {
 			if(!f2) {
-				Game.player.xp += xp;
+				Game.sPlayer.xp += xp;
 				f2 = true;
 			}
 			rewardsText2.render(g);

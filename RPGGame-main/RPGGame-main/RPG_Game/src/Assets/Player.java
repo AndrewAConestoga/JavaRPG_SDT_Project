@@ -59,7 +59,7 @@ public class Player extends Creature {
 
 	@Override
 	public void tick() {
-		if (!Game.flag2) {
+		if (!Game.sFlag2) {
 			animDown.tick();
 			animUp.tick();
 			animRight.tick();
@@ -88,7 +88,7 @@ public class Player extends Creature {
 
 		if (handler.getKeymanager().q && !flag2) {
 			flag2 = true;
-			Game.showHitboxes = !Game.showHitboxes;
+			Game.sShowHitboxes = !Game.sShowHitboxes;
 		} else if (!handler.getKeymanager().q && flag2) {
 			flag2 = false;
 		}
@@ -120,7 +120,7 @@ public class Player extends Creature {
 	public void render(Graphics g) {
 		g.drawImage(getCurrentAnimationFrame(), (int) (x - handler.getGameCamera().getxOffset()),
 				(int) (y - handler.getGameCamera().getyOffset()), width, height, null);
-		if (Game.showHitboxes) {
+		if (Game.sShowHitboxes) {
 			g.setColor(Color.red);
 			g.drawRect((int) (x + bounds.x - handler.getGameCamera().getxOffset()),
 					(int) (y + bounds.y - handler.getGameCamera().getyOffset()), bounds.width, bounds.height);
@@ -162,7 +162,7 @@ public class Player extends Creature {
 			b = w.getSpawnY() + ((int) Creature.yPosition) / 64;
 			if (!flag3) {
 				flag3 = true;
-				Game.flag = true;
+				Game.sFlag = true;
 			}
 		} else if (BattleState.encounterFlag) {
 			if (a != w.getSpawnX() + ((int) Creature.xPosition) / 64

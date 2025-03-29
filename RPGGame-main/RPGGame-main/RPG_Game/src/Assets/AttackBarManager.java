@@ -230,7 +230,7 @@ public class AttackBarManager {
 		
 		if(!MonsterBar.touchingBar) {
 			renderRedText = true;
-			Game.player.health -= 10;
+			Game.sPlayer.health -= 10;
 			redDamageText = new Text("-10", (int)AttackBarManager.xVel - 35, 635, 4, 3);
 			i = 0;
 		} else {

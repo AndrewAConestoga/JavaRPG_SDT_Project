@@ -60,7 +60,7 @@ public class Handler {
 	}
 	
 	public void savePlayer() {
-		pOriginator.set(Game.player);
+		pOriginator.set(Game.sPlayer);
 		pCaretaker.addMemento(pOriginator.storeInMemento());
 	}
 	

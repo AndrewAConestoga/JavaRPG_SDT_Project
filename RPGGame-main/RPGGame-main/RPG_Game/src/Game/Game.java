@@ -11,139 +11,89 @@ import States.GameState;
 import States.MenuState;
 import States.State;
 
-public class Game implements Runnable{
+public class Game {
 	
 	private Display display;
 	
-	private int width;
-	private int height;
-	public String title;
-	public boolean running = false;
+	private final int mWidth;
+	private final int mHeight;
+	public String mTitle;
+	public boolean mIsRunning = false;
 	
-	public static boolean showHitboxes = false;
-	public static boolean flag = false;
-	public static boolean flag2 = false;
-	public static boolean battling = false;
-	public static Player player;
+	public static boolean sShowHitboxes = false;
+	public static boolean sFlag = false;
+	public static boolean sFlag2 = false;
+	public static boolean sBattling = false;
+	public static Player sPlayer;
 	
-	private Thread thread; //own separate game loop
-	
-	private BufferStrategy bs;
-	private Graphics g;
+	private BufferStrategy mBs;
+	private Graphics mGraphics;
 	
 	//States
-	public GameState gameState;
-	public State menuState;
-	public State battleState;
+	public GameState mGameState;
+	public State mMenuState;
+	public State mBattleState;
 	
 	//Input
-	private KeyManager keyManager;
-	private MouseManager mouseManager;
+	private KeyManager mKeyManager;
+	private MouseManager mMouseManager;
 	
-	private GameCamera gameCamera;
+	private GameCamera mGameCamera;
 	
-	private Handler handler;
-	private Transition transition;
+	private Handler mHandler;
+	private Transition mTransition;
 	
-	private int fps;
-	private double timePerTick; 
-	
-	double delta;
-	long now;
-	long lastTime;
-	long timer;
-	int ticks;
+	private int mFpsCount;
+	private double mTimePerTick; 
 	
 	public Game(String title, int width, int height) {
-		this.width = width;
-		this.height = height;
-		this.title = title;
-		keyManager = new KeyManager();
-		mouseManager = new MouseManager();
-	}
-	
-	private void init() {
-		display = new Display("RPG Game", width, height);
-		display.getFrame().addKeyListener(keyManager);
-		display.getFrame().addMouseListener(mouseManager);
-		display.getFrame().addMouseMotionListener(mouseManager);
-		display.getCanvas().addMouseListener(mouseManager);
-		display.getCanvas().addMouseMotionListener(mouseManager);
+		// Window info
+		this.mWidth = width;
+		this.mHeight = height;
+		this.mTitle = title;
+		this.mKeyManager = new KeyManager();
+		this.mMouseManager = new MouseManager();
+		
+		// Init window
+		display = new Display("RPG Game", this.mWidth, this.mHeight);
+		display.getFrame().addKeyListener(this.mKeyManager);
+		display.getFrame().addMouseListener(this.mMouseManager);
+		display.getFrame().addMouseMotionListener(this.mMouseManager);
+		display.getCanvas().addMouseListener(this.mMouseManager);
+		display.getCanvas().addMouseMotionListener(this.mMouseManager);
 		Assets.init();
 		
-		handler = new Handler(this);
-		player = new Player(0,0, handler);
-		gameCamera = new GameCamera(handler, 0, 0);
+		// Setup handlers
+		this.mHandler = new Handler(this);
+		sPlayer = new Player(0,0, this.mHandler);
+		this.mGameCamera = new GameCamera(this.mHandler, 0, 0);
 		
-		gameState = new GameState(handler);
-		menuState = new MenuState(handler);
-		//battleState = new BattleState(handler);
-		State.setState(gameState); //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		// Create states
+		this.mGameState = new GameState(this.mHandler);
+		this.mMenuState = new MenuState(this.mHandler);
+		// battleState = new BattleState(handler);
+		State.setState(this.mGameState); //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		
+		// Other datapoints
+		this.mIsRunning = true;
+		this.mFpsCount = 60;
+		this.mTimePerTick = 1000000000 / this.mFpsCount; //1 billion bcus 1 billion nanoseconds in one second
 	}
 	
-	private void tick() { //updates all variables
-		keyManager.tick();
-		
-		if(State.getState() != null) {
-			State.getState().tick();
-		}
-		
-		if(flag) {
-			flag = false;
-			transition = new Transition();
-			flag2 = true;
-		}
-			if(Transition.canStart) {
-				Transition.canStart = false;
-				battling = true;
-				battleState = new BattleState(handler);
-				State.setState(handler.getGame().battleState);
-			}
-	}
-	
+	/**
+	 * Starts the game
+	 */
+	public void start() {
+		// Data preparation
+		double delta = 0;
+		long lastTime = System.nanoTime();
+		long timer = 0;
+		int ticks = 0;
 
-	
-	private void render() { //renders all objects
-		bs = display.getCanvas().getBufferStrategy();
-		if(bs == null) {
-			display.getCanvas().createBufferStrategy(3);
-			return;
-		}
-		g = bs.getDrawGraphics();
-		
-		//Clears certain portion of screen (in this case the whole screen)
-		g.clearRect(0, 0, width, height);
-		
-		//Draws stuff in the screen-
-		
-		if(State.getState() != null) {
-			State.getState().render(g);
-		}
-		
-		if(flag2) {
-			transition.render(g);
-		}
-		
-		//End drawings-
-		bs.show();
-		g.dispose();
-	}
-
-
-	//starting the thread runs this method
-	public void run() {
-		init();
-		fps = 60;
-		timePerTick = 1000000000 / fps; //1 billion bcus 1 billion nanoseconds in one second
-		delta = 0;
-		lastTime = System.nanoTime();
-		timer = 0;
-		ticks = 0;
-		
-		while(running) {
-			now = System.nanoTime();
-			delta += (now - lastTime) / timePerTick;
-			//System.out.println(delta);
+		// Main game loop
+		while(this.mIsRunning) {
+			long now = System.nanoTime();
+			delta += (now - lastTime) / this.mTimePerTick;
 			timer += now - lastTime;
 			lastTime = now;
 			if(delta >= 1) {
@@ -158,57 +108,78 @@ public class Game implements Runnable{
 				timer = 0;
 			}
 		}
-		
-		stop();
 	}
 	
+	/**
+	 * Updates window objects
+	 */
+	private void tick() {
+		this.mKeyManager.tick();
+		
+		if(State.getState() != null) {
+			State.getState().tick();
+		}
+		
+		if(sFlag) {
+			sFlag = false;
+			this.mTransition = new Transition();
+			sFlag2 = true;
+		}
+			if(Transition.canStart) {
+				Transition.canStart = false;
+				sBattling = true;
+				this.mBattleState = new BattleState(this.mHandler);
+				State.setState(this.mHandler.getGame().mBattleState);
+			}
+	}
+	
+	/**
+	 * Renders the window objects
+	 */
+	private void render() {
+		this.mBs = display.getCanvas().getBufferStrategy();
+		if(this.mBs == null) {
+			display.getCanvas().createBufferStrategy(3);
+			return;
+		}
+		this.mGraphics = this.mBs.getDrawGraphics();
+		
+		//Clears certain portion of screen (in this case the whole screen)
+		this.mGraphics.clearRect(0, 0, this.mWidth, this.mHeight);
+		
+		//Draws stuff in the screen-
+		
+		if(State.getState() != null) {
+			State.getState().render(this.mGraphics);
+		}
+		
+		if(sFlag2) {
+			this.mTransition.render(this.mGraphics);
+		}
+		
+		//End drawings-
+		this.mBs.show();
+		this.mGraphics.dispose();
+	}
+
+	
 	public KeyManager getKeyManager() {
-		return keyManager;
+		return this.mKeyManager;
 	}
 	
 	public MouseManager getMouseManager() {
-		return mouseManager;
+		return this.mMouseManager;
 	}
 	
 	public GameCamera getGameCamera() {
-		return gameCamera;
+		return this.mGameCamera;
 	}
 	
 	public int getWidth() {
-		return width;
+		return this.mWidth;
 	}
 	
 	public int getHeight() {
-		return height;
-	}
-	
-	public synchronized void start() {
-		
-		if(running == true) {
-			return; //checks if already running
-		}
-		running = true;
-		
-		//runs this class on a new thread
-		thread = new Thread(this);
-		
-		//calls the run method
-		thread.start(); 
-	}
-	
-	public synchronized void stop() {
-		if(running == false) {
-			return;
-		}
-		running = false;
-		
-		try {
-			thread.join();
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-	}
-
-
-
+		return this.mHeight;
+	}	
 }

@@ -1,7 +1,6 @@
 package Assets;
 
 import java.awt.AlphaComposite;
-import States.GameState;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -21,15 +20,13 @@ public class HealthBar {
 	private float inGameHPWidth = 346;
 	private int type;
 	private Handler handler;
-	private Transition transition;
 	
 	public HealthBar(int type, int x, int y, Handler handler) {
 		this.handler = handler;
 		this.type = type;
 		this.x = x;
 		this.y = y;
-		healthText = new Text(Game.player.health + "/" + Game.player.baseHealth, x + 152, y + 80, 4, 1);
-		transition = new Transition();
+		healthText = new Text(Game.sPlayer.health + "/" + Game.sPlayer.baseHealth, x + 152, y + 80, 4, 1);
 	}
 	
 	private boolean f;
@@ -45,12 +42,12 @@ public class HealthBar {
 			}
 			healthText.setHealth(Monster.health, Monster.baseHealth);
 		} else if(type == 1){
-			if(Game.player.health <= 0) {
+			if(Game.sPlayer.health <= 0) {
 				BattleState.encounterFlag = true;
-				Game.player.health = 0;
+				Game.sPlayer.health = 0;
 				handler.getMouseManager().setUIManager(null);
 				Transition.canStart = false;
-				Game.flag2 = false;
+				Game.sFlag2 = false;
 				i++;
 				BattleState.switchGameStates = true;
 				
@@ -58,21 +55,21 @@ public class HealthBar {
 					
 					Player checkpoint = handler.getPlayerCaretaker().getLatestMemento().getSavedPlayer();
 					
-					State.setState(handler.getGame().gameState);
-					Game.player.health = checkpoint.baseHealth;
-					Game.player.coins = checkpoint.coins;
-					Game.player.xp = checkpoint.xp;
+					State.setState(handler.getGame().mGameState);
+					Game.sPlayer.health = checkpoint.baseHealth;
+					Game.sPlayer.coins = checkpoint.coins;
+					Game.sPlayer.xp = checkpoint.xp;
 					handler.getGameCamera().setxOffset(0);
 					handler.getGameCamera().setyOffset(0);
 					handler.getWorld().getEntityManager().getPlayer().setX(24 * Tile.TILEWIDTH + 10);
 					handler.getWorld().getEntityManager().getPlayer().setY(48 * Tile.TILEHEIGHT + 16);
-					Game.player.dir = 1;
+					Game.sPlayer.dir = 1;
 					Creature.xPosition = 0;
 					Creature.yPosition = 0;
 				}
 				
 			}
-			healthText.setHealth(Game.player.health, Game.player.baseHealth);
+			healthText.setHealth(Game.sPlayer.health, Game.sPlayer.baseHealth);
 		}
 	}
 	
@@ -92,8 +89,8 @@ public class HealthBar {
 			combinedDamage = Monster.baseHealth - Monster.health;
 			baseHealth = Monster.baseHealth;
 		} else if(type == 1) {
-			combinedDamage = Game.player.baseHealth - Game.player.health;
-			baseHealth = Game.player.baseHealth;
+			combinedDamage = Game.sPlayer.baseHealth - Game.sPlayer.health;
+			baseHealth = Game.sPlayer.baseHealth;
 		}
 		
 		Color c = new Color(0, 255, 0);
@@ -119,21 +116,8 @@ public class HealthBar {
 		
 		c = new Color(0, 245, 0);
 		g.setColor(c);
-		for(int i = 0; i < inGameHPWidth - (inGameHPWidth / 100 * (Game.player.baseHealth - Game.player.health)); i++) {
+		for(int i = 0; i < inGameHPWidth - (inGameHPWidth / 100 * (Game.sPlayer.baseHealth - Game.sPlayer.health)); i++) {
 			g.fillRect(x + 70 + i , y, 1, 44);
 		}
 	}
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 }
