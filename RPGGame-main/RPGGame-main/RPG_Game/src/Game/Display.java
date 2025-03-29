@@ -6,62 +6,47 @@ import javax.swing.JFrame;
 
 public class Display {
 
-	private JFrame frame;
-	private Canvas canvas;
+	private JFrame mFrame;
+	private Canvas mCanvas;
 	
-	private String title;
-	private int width;
-	private int height;
+	private final String mTitle;
+	private final int mWidth;
+	private final int mHeight;
 	
 	public Display(String title, int width, int height) {
-		this.title = title;
-		this.width = width;
-		this.height = height;
+		this.mTitle = title;
+		this.mWidth = width;
+		this.mHeight = height;
 		
-		createDisplay();
+		// JFrame initialization
+		this.mFrame = new JFrame(this.mTitle);
+		this.mFrame.setSize(this.mWidth, this.mHeight);
+		this.mFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.mFrame.setResizable(false);
+		this.mFrame.setLocationRelativeTo(null);
+		this.mFrame.setVisible(true);
+		
+		// Create canvas
+		this.mCanvas = new Canvas();
+		this.mCanvas.setPreferredSize(new Dimension(this.mWidth, this.mHeight));
+		this.mCanvas.setMaximumSize(new Dimension(this.mWidth, this.mHeight));
+		this.mCanvas.setMinimumSize(new Dimension(this.mWidth, this.mHeight));
+		this.mCanvas.setFocusable(false);
+		
+		// Final frame packing
+		this.mFrame.add(this.mCanvas);
+		this.mFrame.pack();
 	}
-	
-	private void createDisplay() {
-		frame = new JFrame(title);
-		frame.setSize(width, height);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setResizable(false);
-		frame.setLocationRelativeTo(null);
-		frame.setVisible(true);
-		
-		
-		canvas = new Canvas();
-		canvas.setPreferredSize(new Dimension(width, height));
-		canvas.setMaximumSize(new Dimension(width, height));
-		canvas.setMinimumSize(new Dimension(width, height));
-		canvas.setFocusable(false);
-		
-		frame.add(canvas);
-		frame.pack();
+
+	public void addManagers(KeyManager key, MouseManager mouse) {
+		this.mFrame.addKeyListener(key);
+		this.mFrame.addMouseListener(mouse);
+		this.mFrame.addMouseMotionListener(mouse);
+		this.mCanvas.addMouseListener(mouse);
+		this.mCanvas.addMouseMotionListener(mouse);
 	}
 	
 	public Canvas getCanvas() {
-		return canvas;
-	}
-	
-	public JFrame getFrame() {
-		return frame;
-	}
-	
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+		return this.mCanvas;
+	}	
 }

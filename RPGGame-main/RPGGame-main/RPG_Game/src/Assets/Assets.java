@@ -173,13 +173,5 @@ public class Assets {
 		bar = barSheet.crop(105, 165, 150, 13);
 		coin = barSheet.crop(204, 98, 8, 8);
 		xp = barSheet.crop(212, 98, 10, 8);
-		
-		
-		
 	}
-	
-	
-	
-	
-	
 }

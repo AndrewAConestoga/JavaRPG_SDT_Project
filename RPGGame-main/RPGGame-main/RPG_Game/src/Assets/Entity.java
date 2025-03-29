@@ -7,20 +7,20 @@ import Game.Handler;
 
 public abstract class Entity {
 	
-	protected Handler handler;
-	protected float x, y;
-	protected int width, height;
-	protected Rectangle bounds;
+	protected Handler mHandler;
+	protected float mX, mY;
+	protected int mWidth, mHeight;
+	protected Rectangle mBounds;
 	
 	
 	public Entity(Handler handler, float x, float y, int width, int height) {
-		this.handler = handler;
-		this.x = x;
-		this.y = y;
-		this.width = width;
-		this.height = height;
+		this.mHandler = handler;
+		this.mX = x;
+		this.mY = y;
+		this.mWidth = width;
+		this.mHeight = height;
 		
-		bounds = new Rectangle(0, 0, width, height);
+		this.mBounds = new Rectangle(0, 0, width, height);
 	}
 	
 	public abstract void tick();
@@ -28,7 +28,7 @@ public abstract class Entity {
 	public abstract void render(Graphics g);
 	
 	public boolean checkEntityCollisions(float xOffset, float yOffset) {
-		for(Entity e : handler.getWorld().getEntityManager().getEntities()) {
+		for(Entity e : this.mHandler.getWorld().getEntityManager().getEntities()) {
 			if(e.equals(this)) {
 				continue;
 			}
@@ -41,39 +41,39 @@ public abstract class Entity {
 	}
 	
 	public Rectangle getCollisionBounds(float xOffset, float yOffset) {
-		return new Rectangle((int)(x + bounds.x + xOffset), (int)(y + bounds.y + yOffset), bounds.width, bounds.height);
+		return new Rectangle((int)(this.mX + this.mBounds.x + xOffset), (int)(this.mY + this.mBounds.y + yOffset), this.mBounds.width, this.mBounds.height);
 	}
 	
 	public float getX() {
-		return x;
+		return this.mX;
 	}
 	
 	public void setX(float x) {
-		this.x = x;
+		this.mX = x;
 	}
 	
 	public float getY() {
-		return y;
+		return this.mY;
 	}
 	
 	public void setY(float y) {
-		this.y = y;
+		this.mY = y;
 	}
 	
 	public int getWidth() {
-		return width;
+		return this.mWidth;
 	}
 	
 	public void setWidth(int width) {
-		this.width = width;
+		this.mWidth = width;
 	}
 	
 	public int getHeight() {
-		return height;
+		return this.mHeight;
 	}
 	
 	public void setHeight(int height) {
-		this.height = height;
+		this.mHeight = height;
 	}
 	
 }

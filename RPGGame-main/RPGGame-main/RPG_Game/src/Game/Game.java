@@ -56,11 +56,7 @@ public class Game {
 		
 		// Init window
 		display = new Display("RPG Game", this.mWidth, this.mHeight);
-		display.getFrame().addKeyListener(this.mKeyManager);
-		display.getFrame().addMouseListener(this.mMouseManager);
-		display.getFrame().addMouseMotionListener(this.mMouseManager);
-		display.getCanvas().addMouseListener(this.mMouseManager);
-		display.getCanvas().addMouseMotionListener(this.mMouseManager);
+		display.addManagers(this.mKeyManager, this.mMouseManager);
 		Assets.init();
 		
 		// Setup handlers
@@ -97,8 +93,8 @@ public class Game {
 			timer += now - lastTime;
 			lastTime = now;
 			if(delta >= 1) {
-				tick(); 
-				render();
+				this.tick(); 
+				this.render();
 				ticks++;
 				delta--;
 			}
@@ -114,23 +110,26 @@ public class Game {
 	 * Updates window objects
 	 */
 	private void tick() {
+		// Game ticks
 		this.mKeyManager.tick();
-		
 		if(State.getState() != null) {
 			State.getState().tick();
 		}
 		
+		// Check whatever this flag does
 		if(sFlag) {
 			sFlag = false;
 			this.mTransition = new Transition();
 			sFlag2 = true;
 		}
-			if(Transition.canStart) {
-				Transition.canStart = false;
-				sBattling = true;
-				this.mBattleState = new BattleState(this.mHandler);
-				State.setState(this.mHandler.getGame().mBattleState);
-			}
+
+		// Idk man, transitions somehow
+		if(Transition.canStart) {
+			Transition.canStart = false;
+			sBattling = true;
+			this.mBattleState = new BattleState(this.mHandler);
+			State.setState(this.mHandler.getGame().mBattleState);
+		}
 	}
 	
 	/**
