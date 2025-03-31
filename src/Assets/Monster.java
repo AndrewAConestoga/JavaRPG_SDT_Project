@@ -223,7 +223,7 @@ public class Monster implements MonsterInterface{
 	
 	/**
 	 * getter for health
-	 * @author fuelvin
+	 * @author Dylan
 	 * @return the integer value of this monsters health
 	 */
 	@Override
@@ -233,7 +233,7 @@ public class Monster implements MonsterInterface{
 
 	/**
 	 * setter for health
-	 * @author fuelvin
+	 * @author Dylan
 	 * @param health value to set this monster current health to
 	 */
 	@Override
@@ -243,7 +243,7 @@ public class Monster implements MonsterInterface{
 
 	/**
 	 * setter for baseHealth
-	 * @author fuelvin
+	 * @author Dylan
 	 * @param health value to set this monster base health to
 	 */
 	@Override
@@ -253,7 +253,7 @@ public class Monster implements MonsterInterface{
 	
 	/**
 	 * getter for attack
-	 * @author fuelvin
+	 * @author Dylan
 	 * @return the monsters attack stat
 	 */
 	public int getAttack() {
@@ -262,7 +262,7 @@ public class Monster implements MonsterInterface{
 	
 	/**
 	 * setter for attack
-	 * @author fuelvin
+	 * @author Dylan
 	 * @param attack new value of the monsters attack stat
 	 */
 	public void setAttack(int attack) {
