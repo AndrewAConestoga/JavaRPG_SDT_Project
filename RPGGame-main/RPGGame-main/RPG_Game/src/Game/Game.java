@@ -72,7 +72,7 @@ public class Game {
 		
 		// Setup handlers
 		this.mHandler = new Handler(this);
-		sPlayer = new Player(0,0, this.mHandler);
+		sPlayer = new Player(0, 0, this.mHandler);
 		this.mGameCamera = new GameCamera(this.mHandler, 0, 0);
 		
 		// Create states

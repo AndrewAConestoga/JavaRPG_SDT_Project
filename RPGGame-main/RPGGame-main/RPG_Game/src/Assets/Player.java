@@ -23,8 +23,6 @@ public class Player extends Creature {
 
 	private Animation animDown, animUp, animLeft, animRight;
 	public int mDir = 1;
-	public float xPosition;
-	public float yPosition;
 	public int health;
 	public int baseHealth;
 	public int level;
@@ -55,11 +53,13 @@ public class Player extends Creature {
 	public Player(float x, float y, Handler handler) {
 		super(handler, x, y, Creature.PLAYER_WIDTH, Creature.PLAYER_HEIGHT);
 
+		// Collision setup
 		this.mBounds.x = 0;
 		this.mBounds.height = 35;
 		this.mBounds.y = PLAYER_HEIGHT - this.mBounds.height - 1;
 		this.mBounds.width = 43;
 
+		// Player stuff
 		health = 100;
 		baseHealth = 100;
 		level = 1;
@@ -202,20 +202,20 @@ public class Player extends Creature {
 	 */
 	private void checkEncounter() {
 		World w = this.mHandler.getWorld();
-		if ((w.getTile(w.getSpawnX() + ((int) Creature.xPosition) / 64,
-				w.getSpawnY() + ((int) Creature.yPosition) / 64) == Tile.bush) &&
+		if ((w.getTile(w.getSpawnX() + ((int) this.xPosition) / 64,
+				w.getSpawnY() + ((int) this.yPosition) / 64) == Tile.bush) &&
 				!BattleState.encounterFlag &&
 				Math.random() >= 0.99)
 			{
-			a = w.getSpawnX() + ((int) Creature.xPosition) / 64;
-			b = w.getSpawnY() + ((int) Creature.yPosition) / 64;
+			a = w.getSpawnX() + ((int) this.xPosition) / 64;
+			b = w.getSpawnY() + ((int) this.yPosition) / 64;
 			if (!flag3) {
 				flag3 = true;
 				Game.sFlag = true;
 			}
 		} else if (BattleState.encounterFlag) {
-			if (a != w.getSpawnX() + ((int) Creature.xPosition) / 64
-					|| b != w.getSpawnY() + ((int) Creature.yPosition) / 64) {
+			if (a != w.getSpawnX() + ((int) this.xPosition) / 64
+					|| b != w.getSpawnY() + ((int) this.yPosition) / 64) {
 				BattleState.encounterFlag = false;
 				flag3 = false;
 			}

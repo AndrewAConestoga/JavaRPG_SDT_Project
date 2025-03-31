@@ -4,7 +4,6 @@ import java.awt.Graphics;
 
 
 import Assets.EntityManager;
-import Assets.Player;
 import Assets.Tree;
 import Assets.Tile;
 
@@ -18,7 +17,6 @@ public class World {
 	private int width, height;
 	private int spawnX, spawnY;
 	private int[][] tiles;
-	private int half = Tile.TILEWIDTH / 2;
 	
 	private EntityManager entityManager;
 
@@ -76,22 +74,14 @@ public class World {
 		
 		for(int i = yStart; i < yEnd; i++) {
 			for(int j = xStart; j < xEnd; j++) {
-				getTile(j, i).render(g, (int) (j * Tile.TILEWIDTH - handler.getGameCamera().getxOffset()), (int) (i * Tile.TILEHEIGHT - handler.getGameCamera().getyOffset()));
 				if(getTile(j, i).front()) {
 					getTile(-1, -1).render(g, (int) (j * Tile.TILEWIDTH - handler.getGameCamera().getxOffset()), (int) (i * Tile.TILEHEIGHT - handler.getGameCamera().getyOffset()));
 				}
+				getTile(j, i).render(g, (int) (j * Tile.TILEWIDTH - handler.getGameCamera().getxOffset()), (int) (i * Tile.TILEHEIGHT - handler.getGameCamera().getyOffset()));
 			}
 		}
 		
 		entityManager.render(g);
-		
-		for(int i = yStart; i < yEnd; i++) {
-			for(int j = xStart; j < xEnd; j++) {
-				if(getTile(j, i).front()) {
-					getTile(j, i).render(g, (int) (j * Tile.TILEWIDTH - handler.getGameCamera().getxOffset()), (int) (i * Tile.TILEHEIGHT - handler.getGameCamera().getyOffset()));
-				} 
-			}
-		}
 	}
 	
 	/**
@@ -134,7 +124,6 @@ public class World {
 				tiles[x][y] = Utils.parseInt(tokens[(x + y * width) + 4]);
 			}
 		}
-		
 	}
 	
 	/**
@@ -191,12 +180,4 @@ public class World {
 		this.spawnY = spawnY;
 	}
 }
-
-
-
-
-
-
-
-
 

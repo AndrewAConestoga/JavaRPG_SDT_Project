@@ -17,9 +17,12 @@ public class Assets {
 	private static final int pWidth = 12;
 	private static final int pHeight = 20;
 	
-	public static BufferedImage grass, rock, ledgeMiddleLeft, tree, bush, leftCornerLedge, ledge, bottomMiddleLedge, bottomRightLedge,
-	ledgeMiddleRight, ledgeTopLeft, ledgeTopMiddle, ledgeTopRight, ledgeMiddleMiddle, grassLedge, ledgeCornerTopRight, ledgeCornerTopLeft, bar,
-	critBar, barGrass, grassPlatform, enemyDescription, enemyHealthBar, slash, monsterLevel, monsterBar, playerDescription,
+	public static BufferedImage edgeLeft, edgeRight, edgeTop, edgeBottom,
+	cornerInTopLeft, cornerInTopRight, cornerInBottomLeft, cornerInBottomRight,
+	cornerOutTopLeft, cornerOutTopRight, cornerOutBottomLeft, cornerOutBottomRight,
+
+	grass, rock, tree, bush, ledge, grassLedge, plateau,
+	bar, critBar, barGrass, grassPlatform, enemyDescription, enemyHealthBar, slash, monsterLevel, monsterBar, playerDescription,
 	greySquare, barOutline, coin, xp; //images from sprite sheet
 	public static BufferedImage[] player_down, player_up, player_left, player_right;
 	public static BufferedImage[] buttonStart, trees, attackButton, escapeButton, alphabet, numbers, slashAnimation, attackBar, damageNumbers,
@@ -151,22 +154,34 @@ public class Assets {
 			xpNumbers[i] = barSheet.crop(235 + i * 6, 67, 5, 8);
 		}
 		
+		// Grass
 		grass = sheet.crop(width, 0, width, height);
-		ledgeMiddleLeft = ledgeSheet.crop(0, height, width, height);
-		ledgeMiddleRight = ledgeSheet.crop(width * 2, height, width, height);
+
+		// Edges
+		edgeTop = ledgeSheet.crop(width, 0, width, height);
+		edgeLeft = ledgeSheet.crop(0, height, width, height);
+		edgeRight = ledgeSheet.crop(width * 2, height, width, height);
+		edgeBottom = ledgeSheet.crop(width, height * 2, width, height);
+
+		// Outer corners
+		cornerOutTopLeft = ledgeSheet.crop(0, 0, width, height);
+		cornerOutTopRight = ledgeSheet.crop(width * 2, 0, width, height);
+		cornerOutBottomLeft = ledgeSheet.crop(0, height * 2, width, height);
+		cornerOutBottomRight = ledgeSheet.crop(width * 2, height * 2, width, height);
+
+		// Inner corners
+		cornerInTopLeft = ledgeSheet.crop(width * 3, 0, width, height);
+		cornerInTopRight = ledgeSheet.crop(width * 4, 0, width, height);
+		cornerInBottomLeft = ledgeSheet.crop(width * 3, height, width, height);
+		cornerInBottomRight = ledgeSheet.crop(width * 4, height, width, height);
+
+		// Others
 		bush = sheet.crop(0, height * 3, width, height);
-		leftCornerLedge = ledgeSheet.crop(0, height * 2, width, height);
 		ledge = ledgeSheet.crop(0, height * 3, width, height);
 		grassLedge = ledgeSheet.crop(0, height * 4, width, height);
-		bottomMiddleLedge = ledgeSheet.crop(width, height * 2, width, height);
-		bottomRightLedge = ledgeSheet.crop(width * 2, height * 2, width, height);
-		ledgeTopLeft = ledgeSheet.crop(0, 0, width, height);
-		ledgeTopMiddle = ledgeSheet.crop(width, 0, width, height);
-		ledgeTopRight = ledgeSheet.crop(width * 2, 0, width, height);
-		ledgeMiddleMiddle = ledgeSheet.crop(width, height, width, height);
-		ledgeCornerTopRight = ledgeSheet.crop(width * 3, 0, width, height);
-		ledgeCornerTopLeft = ledgeSheet.crop(width * 4, 0, width, height);
+		plateau = ledgeSheet.crop(width, height, width, height);
 		
+		// UI elements
 		//bar = barSheet.crop(0, 0, 300, 25);
 		critBar = barSheet.crop(299, 0, 6, 25);
 		barGrass = barSheet.crop(7, 25, 94, 85);

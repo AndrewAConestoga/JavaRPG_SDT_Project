@@ -17,8 +17,8 @@ public abstract class Creature extends Entity {
 
 	public int health;
 	public float speed;
-	public static float xMove, yMove;
-	public static float xPosition, yPosition;
+	public float xMove, yMove;
+	public float xPosition, yPosition;
 	public static boolean collided = false;
 	
 	/**

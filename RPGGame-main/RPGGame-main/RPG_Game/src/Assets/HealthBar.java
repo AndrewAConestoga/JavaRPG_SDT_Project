@@ -82,8 +82,8 @@ public class HealthBar {
 					handler.getWorld().getEntityManager().getPlayer().setX(24 * Tile.TILEWIDTH + 10);
 					handler.getWorld().getEntityManager().getPlayer().setY(48 * Tile.TILEHEIGHT + 16);
 					Game.sPlayer.setDir(1);
-					Creature.xPosition = 0;
-					Creature.yPosition = 0;
+					Game.sPlayer.xPosition = 0;
+					Game.sPlayer.yPosition = 0;
 				}
 				
 			}

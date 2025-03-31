@@ -3,41 +3,44 @@ package Assets;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
-import Game.Game;
-import Game.Handler;
-import Assets.Assets;
-
-/**
- * tile class used to create tiles in the world for player to move through
- * @author fuelvin
- */
 public class Tile {
+
+	// ----- Constants -----
+
+	public static final int TILEWIDTH = 64, TILEHEIGHT = 64;
+
+
 	
+	// ----- Data -----
+	
+	// General info
 	public static Tile[] tiles = new Tile[256];
 	public static Tile grassTile = new Tile(Assets.grass, 0, false, false);
-	public static Tile rockTile = new Tile(Assets.rock, 1, false, false);
+	public static Tile bush = new Tile(Assets.bush, 1, false, false);
+
+	// Edges
+	public static Tile edgeLeft		= new Tile(Assets.edgeLeft, 2, true, false);
+	public static Tile edgeRight	= new Tile(Assets.edgeRight, 3, true, false);
+	public static Tile edgeTop		= new Tile(Assets.edgeTop, 4, true, false);
+	public static Tile edgeBottom	= new Tile(Assets.edgeBottom, 5, true, false);
 	
-	public static Tile ledgeTopLeft = new Tile(Assets.ledgeTopLeft, 3, true, true);
-	public static Tile ledgeTopMiddle = new Tile(Assets.ledgeTopMiddle, 4, true, false);
-	public static Tile ledgeTopRight = new Tile(Assets.ledgeTopRight, 5, true, true);
+	// Outer corners
+	public static Tile cornerOutTL	= new Tile(Assets.cornerOutTopLeft, 6, true, true);
+	public static Tile cornerOutTR	= new Tile(Assets.cornerOutTopRight, 7, true, true);
+	public static Tile cornerOutBL	= new Tile(Assets.cornerOutBottomLeft, 8, true, true);
+	public static Tile cornerOutBR	= new Tile(Assets.cornerOutBottomRight, 9, true, true);
 	
-	public static Tile ledgeTile = new Tile(Assets.ledgeMiddleLeft, 6, true, false);
-	public static Tile ledgeMiddleMiddle = new Tile(Assets.ledgeMiddleMiddle, 7, true, false);
-	public static Tile middleRightLedge = new Tile(Assets.ledgeMiddleRight, 8, true, false);
+	// Inner corners
+	public static Tile cornerInTL	= new Tile(Assets.cornerInTopLeft, 10, true, true);
+	public static Tile cornerInTR	= new Tile(Assets.cornerInTopRight, 11, true, true);
+	public static Tile cornerInBL	= new Tile(Assets.cornerInBottomLeft, 12, true, true);
+	public static Tile cornerInBR	= new Tile(Assets.cornerInBottomRight, 13, true, true);
 	
-	public static Tile leftCornerLedge = new Tile(Assets.leftCornerLedge, 9, true, true);
-	public static Tile bottomMiddleLedge = new Tile(Assets.bottomMiddleLedge, 10, true, false);
-	public static Tile bottomRightLedge = new Tile(Assets.bottomRightLedge, 11, true, true);
+	// Others
+	public static Tile ledgeMiddle = new Tile(Assets.ledge, 14, true, false);
+	public static Tile grassLedge = new Tile(Assets.grassLedge, 15, true, false);
+	public static Tile plateau = new Tile(Assets.plateau, 16, true, false);
 	
-	public static Tile ledgeCornerTopRight = new Tile(Assets.ledgeCornerTopRight, 14, true, false);
-	public static Tile ledgeCornerTopLeft = new Tile(Assets.ledgeCornerTopLeft, 15, true, false);
-	
-	public static Tile ledgeMiddle = new Tile(Assets.ledge, 12, true, false);
-	public static Tile grassLedge = new Tile(Assets.grassLedge, 13, true, false);
-	
-	public static Tile bush = new Tile(Assets.bush, 2, false, false);
-	
-	public static final int TILEWIDTH = 64, TILEHEIGHT = 64;
 	
 	protected BufferedImage texture;
 	protected final int id;
@@ -104,7 +107,5 @@ public class Tile {
 	 */
 	public int getId() {
 		return id;
-	}
-
-	
+	}	
 }
