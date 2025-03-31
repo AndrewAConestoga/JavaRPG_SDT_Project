@@ -34,6 +34,7 @@ public class AttackBarManager {
 	private Text turn;
 	private Text turn2;
 	private Text redDamageText;
+
 	
 	private Animation slashAnimation;
 	private Animation attackBar;

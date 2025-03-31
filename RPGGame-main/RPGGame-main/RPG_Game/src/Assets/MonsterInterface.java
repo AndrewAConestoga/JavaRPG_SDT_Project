@@ -8,4 +8,6 @@ public interface MonsterInterface {
     int getHealth();
     void setHealth(int health);
     void setBaseHealth(int health);
+    int getAttack();
+    void setAttack(int attack);
 }

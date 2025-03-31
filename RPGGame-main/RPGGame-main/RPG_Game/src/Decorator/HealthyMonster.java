@@ -35,5 +35,15 @@ public class HealthyMonster extends MonsterDecorator {
     public void tick() {
         super.tick();
     }
+
+    @Override
+    public int getAttack() {
+        return monster.getAttack();
+    }
+
+    @Override
+    public void setAttack(int attack) {
+        monster.setAttack(attack);
+    }
     
 }

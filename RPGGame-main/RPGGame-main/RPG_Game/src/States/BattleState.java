@@ -15,6 +15,7 @@ import Assets.Monster;
 import Assets.MonsterInterface;
 import Assets.Transition;
 import Decorator.HealthyMonster;
+import Decorator.StrongMonster;
 import Game.Handler;
 import Game.UIImageButton;
 import Game.UIManager;
@@ -42,12 +43,13 @@ public class BattleState extends State{
 		showBars = false;
 		playerAttack = true;
 		this.handler = handler;
-		bar = new Bar(handler);
+		
 		
 		
 		Monster radishMonster = new Monster("Bad Radish", Assets.monsters[1], 23 * 4, 41 * 4, 480, 110, 10, 20, 1, handler);
-
-
+		Monster slimeMonster = new Monster("Angry Slime", Assets.monsters[0], 38 * 4, 27 * 4, 440, 160, 30, 20, 1, handler);
+		StrongMonster strongSlime = new StrongMonster(slimeMonster, 5);
+		monsters.add(strongSlime);
 		monsters.add(radishMonster);
 		System.out.println("Added regular radish");
 		HealthyMonster healthyRadish = new HealthyMonster(radishMonster, 20);
@@ -63,6 +65,7 @@ public class BattleState extends State{
 		inGamePlayer = new InGamePlayer(handler);
 		attackBarManager = new AttackBarManager(handler);
 		switchGameStates = false;
+		bar = new Bar(handler, monster);
 		initializeUI();
 	}
 

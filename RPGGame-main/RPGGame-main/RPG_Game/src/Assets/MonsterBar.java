@@ -26,13 +26,15 @@ public class MonsterBar {
 	public static boolean touchingBar;
 	private Text redDamageText;
 	private Handler handler;
+	private MonsterInterface monster;
 	
-	public MonsterBar(float minWidth, float maxWidth, float minSpeed, float maxSpeed, int minTimer, int maxTimer, int id, Handler handler) {
+	public MonsterBar(float minWidth, float maxWidth, float minSpeed, float maxSpeed, int minTimer, int maxTimer, int id, Handler handler, MonsterInterface monster) {
 		this.width = (float)(minWidth + (Math.random() * (maxWidth - minWidth)));
 		this.speed = (float)(minSpeed + (Math.random() * (maxSpeed - minSpeed)));
 		this.x = 700;
 		this.y = 671;
 		this.id = id;
+		this.monster = monster;
 		randomTimer = (int)(minTimer * (id + 1) + (Math.random() * (maxTimer - minTimer)));
 		redDamageText = new Text("-20", 90, 640, 4, 3);
 	}
@@ -108,7 +110,7 @@ public class MonsterBar {
 				redDamageText.setY(640 - i / 2);
 				if(!f) {
 					f = true;
-					Game.player.health -= 20;
+					Game.player.health -= monster.getAttack();
 				}
 			} else {
 				f = false;

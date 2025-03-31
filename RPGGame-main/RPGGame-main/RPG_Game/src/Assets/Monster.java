@@ -23,6 +23,7 @@ public class Monster implements MonsterInterface{
 	private long lastTime, timer;
 	private int money;
 	private int xp;
+	private int attack;
 	private Handler handler;
 	private static String name;
 	
@@ -43,6 +44,7 @@ public class Monster implements MonsterInterface{
 		this.name = name;
 		this.health = health;
 		this.baseHealth = health;
+		this.attack = attack;
 		this.money = (level * 4) + (int)(Math.random() * (level * 3) + 1);
 		this.xp = (level * 4) + (int)(Math.random() * (level * 3) + 1);
 		deathState = 0;
@@ -194,10 +196,14 @@ public class Monster implements MonsterInterface{
 		this.baseHealth = health;
 	}
 	
+	@Override
+	public int getAttack() {
+		return attack;
+	}
 	
-	
-	
-	
-	
+	@Override
+	public void setAttack(int attack) {
+		this.attack = attack;
+	}
 
 }
