@@ -73,6 +73,7 @@ public class HealthBar {
 				if(i > 100) {
 					
 					Player checkpoint = handler.getPlayerCaretaker().getLatestMemento().getSavedPlayer();
+					System.out.println(checkpoint.toString());
 					
 					State.setState(handler.getGame().mGameState);
 					Game.sPlayer.health = checkpoint.health;
@@ -84,8 +85,8 @@ public class HealthBar {
 					handler.getWorld().getEntityManager().getPlayer().setX(24 * Tile.TILEWIDTH + 10);
 					handler.getWorld().getEntityManager().getPlayer().setY(48 * Tile.TILEHEIGHT + 16);
 					Game.sPlayer.setDir(1);
-					Game.sPlayer.xPosition = 0;
-					Game.sPlayer.yPosition = 0;
+					Game.sPlayer.setX(checkpoint.getX());
+					Game.sPlayer.setY(checkpoint.getY());
 				}
 				
 			}

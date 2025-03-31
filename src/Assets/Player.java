@@ -77,7 +77,6 @@ public class Player extends Creature {
 		this.inputRight = new PlayerInput(new PlayerMoveCommand(this, Direction.Right));
 		this.inputShowHitboxes = new PlayerInput(new PlayerShowHitboxesCommand(this));
 		this.inputRun = new PlayerInput(new PlayerRunCommand(this));
-
 	}
 	
 	/**
