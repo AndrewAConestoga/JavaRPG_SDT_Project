@@ -32,9 +32,12 @@ public class PlayerCaretaker {
 		/**
 		 * retrieves the most recently saved memento
 		 * @author Andrew Abrantes
-		 * @return most recently saved PlayerMemento
+		 * @return most recently saved PlayerMemento, null if none
 		 */
 		public PlayerMemento getLatestMemento() {
+			if (savedPlayers.size()==0) {
+				return null;
+			}
 			return savedPlayers.get(savedPlayers.size() - 1);
 		}
 
