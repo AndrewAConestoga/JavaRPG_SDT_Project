@@ -11,8 +11,8 @@ public abstract class Creature extends Entity {
 	public static final int PLAYER_WIDTH = 48;
 	public static final int PLAYER_HEIGHT = 80;
 
-	protected int health;
-	protected float speed;
+	public int health;
+	public float speed;
 	public static float xMove, yMove;
 	public static float xPosition, yPosition;
 	public static boolean collided = false;

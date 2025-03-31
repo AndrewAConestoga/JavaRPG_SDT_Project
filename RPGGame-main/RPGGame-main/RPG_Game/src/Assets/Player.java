@@ -3,6 +3,12 @@ package Assets;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
+
+import Command.PlayerInput;
+import Command.PlayerMoveCommand;
+import Command.PlayerMoveCommand.Direction;
+import Command.PlayerRunCommand;
+import Command.PlayerShowHitboxesCommand;
 import Game.Game;
 import Game.Handler;
 import Game.World;
@@ -12,7 +18,7 @@ import States.BattleState;
 public class Player extends Creature {
 
 	private Animation animDown, animUp, animLeft, animRight;
-	private int mDir = 1;
+	public int mDir = 1;
 	public float xPosition;
 	public float yPosition;
 	public int health;
@@ -22,11 +28,18 @@ public class Player extends Creature {
 	public int xp;
 	public String name;
 
-	private boolean flag;
-	private boolean flag2;
-	private boolean flag3;
+	public boolean flag;
+	public boolean flag2;
+	public boolean flag3;
 	private int a;
 	private int b;
+	
+	private PlayerInput inputUp;
+	private PlayerInput inputDown;
+	private PlayerInput inputLeft;
+	private PlayerInput inputRight;
+	private PlayerInput inputShowHitboxes;
+	private PlayerInput inputRun;
 
 	public Player(float x, float y, Handler handler) {
 		super(handler, x, y, Creature.PLAYER_WIDTH, Creature.PLAYER_HEIGHT);
@@ -45,6 +58,13 @@ public class Player extends Creature {
 		animUp = new Animation(120, Assets.player_up);
 		animLeft = new Animation(120, Assets.player_left);
 		animRight = new Animation(120, Assets.player_right);
+		
+		this.inputUp = new PlayerInput(new PlayerMoveCommand(this, Direction.Up));
+		this.inputDown = new PlayerInput(new PlayerMoveCommand(this, Direction.Down));
+		this.inputLeft = new PlayerInput(new PlayerMoveCommand(this, Direction.Left));
+		this.inputRight = new PlayerInput(new PlayerMoveCommand(this, Direction.Right));
+		this.inputShowHitboxes = new PlayerInput(new PlayerShowHitboxesCommand(this));
+		this.inputRun = new PlayerInput(new PlayerRunCommand(this));
 
 	}
 	
@@ -70,42 +90,34 @@ public class Player extends Creature {
 		xMove = 0;
 		yMove = 0;
 
-		if (this.mHandler.getMouseManager().isRightPressed() && !flag) {
-			flag = true;
-			if (this.speed == 16.0f) {
-				this.speed = 4.0f;
-			} else {
-				this.speed = 16.0f;
-			}
-		} else if (!this.mHandler.getMouseManager().isRightPressed() && flag) {
-			flag = false;
+		if (this.mHandler.getMouseManager().isRightPressed()) {
+			this.inputRun.execute();
+		} 
+		else if (!this.mHandler.getMouseManager().isRightPressed() && flag) {
+			this.inputRun.unexecute();
 		}
 
-		if (this.mHandler.getKeymanager().q && !flag2) {
-			flag2 = true;
-			Game.sShowHitboxes = !Game.sShowHitboxes;
-		} else if (!this.mHandler.getKeymanager().q && flag2) {
-			flag2 = false;
+		if (this.mHandler.getKeymanager().q) {
+			this.inputShowHitboxes.execute();
+		} 
+		else if (!this.mHandler.getKeymanager().q && flag2) {
+			this.inputShowHitboxes.unexecute();
 		}
 
 		if (this.mHandler.getKeymanager().up || this.mHandler.getKeymanager().Up) {
-			yMove = -speed;
-			this.mDir = 1;
+			this.inputUp.execute();
 			return;
 		}
 		if (this.mHandler.getKeymanager().down || this.mHandler.getKeymanager().Down) {
-			yMove = speed;
-			this.mDir = 0;
+			this.inputDown.execute();
 			return;
 		}
 		if (this.mHandler.getKeymanager().left || this.mHandler.getKeymanager().Left) {
-			xMove = -speed;
-			this.mDir = 2;
+			this.inputLeft.execute();
 			return;
 		}
 		if (this.mHandler.getKeymanager().right || this.mHandler.getKeymanager().Right) {
-			xMove = speed;
-			this.mDir = 3;
+			this.inputRight.execute();
 			return;
 		}
 
