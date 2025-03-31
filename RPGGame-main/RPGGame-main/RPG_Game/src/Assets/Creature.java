@@ -24,7 +24,7 @@ public abstract class Creature extends Entity {
 	/**
 	 * creates a new instance of Creature
 	 * @author fuelvin
-	 * @param handler Handler object that will be used to manipulate the creature
+	 * @param handler Handler used to access game information from
 	 * @param x top left x position of where to draw creature on screen
 	 * @param y top left y position of where to draw creature on screen
 	 * @param width width of creature in pixels on screen

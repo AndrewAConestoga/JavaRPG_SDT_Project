@@ -4,6 +4,10 @@ import java.awt.Dimension;
 
 import javax.swing.JFrame;
 
+/**
+ * class for the game window and displaying all the game assets
+ * @author fuelvin
+ */
 public class Display {
 
 	private JFrame mFrame;
@@ -13,6 +17,13 @@ public class Display {
 	private final int mWidth;
 	private final int mHeight;
 	
+	/**
+	 * creates a new instance of Display
+	 * @author fuelvin
+	 * @param title title of the window to be set to
+	 * @param width width of the window in pixels
+	 * @param height heigh of the window in pixels
+	 */
 	public Display(String title, int width, int height) {
 		this.mTitle = title;
 		this.mWidth = width;
@@ -38,6 +49,12 @@ public class Display {
 		this.mFrame.pack();
 	}
 
+	/**
+	 * sets all the mouse and key managers on the screen for getting player input
+	 * @author fuelvin
+	 * @param key KeyManager used to listen for key inputs
+	 * @param mouse MouseManager used to listen for mouse button inputs
+	 */
 	public void addManagers(KeyManager key, MouseManager mouse) {
 		this.mFrame.addKeyListener(key);
 		this.mFrame.addMouseListener(mouse);
@@ -46,6 +63,11 @@ public class Display {
 		this.mCanvas.addMouseMotionListener(mouse);
 	}
 	
+	/**
+	 * getter for canvas
+	 * @author fuelvin
+	 * @return the canvas the screen is drawing assets on
+	 */
 	public Canvas getCanvas() {
 		return this.mCanvas;
 	}	

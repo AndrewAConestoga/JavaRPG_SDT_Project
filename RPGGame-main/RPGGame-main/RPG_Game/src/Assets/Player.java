@@ -50,7 +50,7 @@ public class Player extends Creature {
 	 * @author fuelvin
 	 * @param x top left x position of where to draw player on screen
 	 * @param y top left y position of where to draw player on screen
-	 * @param handler Handler object that will be used to manipulate the player
+	 * @param handler Handler used to access game information from
 	 */
 	public Player(float x, float y, Handler handler) {
 		super(handler, x, y, Creature.PLAYER_WIDTH, Creature.PLAYER_HEIGHT);

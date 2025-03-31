@@ -2,6 +2,10 @@ package Command;
 
 import Assets.Player;
 
+/**
+ * class used to change the speed and direction of the player
+ * @author Andrew Abrantes
+ */
 public class PlayerMoveCommand implements Command {
 	
 	public enum Direction {
@@ -11,12 +15,22 @@ public class PlayerMoveCommand implements Command {
 	private Player p;
 	private Direction d;
 	
+	/**
+	 * creates a new instance of PlayerMoveCommand
+	 * @author Andrew Abrantes
+	 * @param p player to manipulate speed and direction of
+	 * @param d the direction this command will set the player to 
+	 */
 	public PlayerMoveCommand(Player p, Direction d) {
 		this.p = p;
 		this.d = d;
 	}
 	
 
+	/**
+	 * Executes command, sets players speed and direction based on input
+	 * @author Andrew Abrantes
+	 */
 	@Override
 	public void execute() {
 		
@@ -39,6 +53,10 @@ public class PlayerMoveCommand implements Command {
 	}
 
 
+	/**
+	 * unexecutes command
+	 * @author Andrew Abrantes
+	 */
 	@Override
 	public void unexecute() {
 		

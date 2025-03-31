@@ -49,7 +49,7 @@ public class AttackBarManager {
 	/**
 	 * creates a new instance of an AttackBarManager 
 	 * @author fuelvin
-	 * @param handler handler that will control and manipulate this object
+	 * @param handler Handler used to access game information from
 	 */
 	public AttackBarManager(Handler handler) {
 		timer = new Timer();

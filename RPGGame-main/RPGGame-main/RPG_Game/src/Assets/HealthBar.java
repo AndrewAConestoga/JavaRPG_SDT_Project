@@ -11,6 +11,10 @@ import Game.Handler;
 import States.BattleState;
 import States.State;
 
+/**
+ * health bar class used to draw the player and enemies health bars on the screen 
+ * @author fuelvin
+ */
 public class HealthBar {
 	
 	private int x;
@@ -21,6 +25,14 @@ public class HealthBar {
 	private int type;
 	private Handler handler;
 	
+	/**
+	 * creates a new instance of HealthBar
+	 * @author fuelvin
+	 * @param type the type of the health bar
+	 * @param x the top left x position of where the health bar will be drawn on the screen
+	 * @param y the top left y position of where the health bar will be drawn on the screen
+	 * @param handler Handler used to access game information from
+	 */
 	public HealthBar(int type, int x, int y, Handler handler) {
 		this.handler = handler;
 		this.type = type;
@@ -31,6 +43,12 @@ public class HealthBar {
 	
 	private boolean f;
 	private int i = 0;
+	
+	/**
+	 * called once per frame, sets the text of the health bar for monster and player
+	 * to their current integer health values
+	 * @author fuelvin
+	 */
 	public void tick() {
 		if(type == 0) {
 			if(Monster.health <= 0) {
@@ -73,7 +91,11 @@ public class HealthBar {
 		}
 	}
 	
-	
+	/**
+	 * draws self on the game screen
+	 * @author fuelvin
+	 * @param g graphics to draw to
+	 */
 	public void render(Graphics g) {
 		if(type == 0 || type == 1) {
 			drawHealthBar(g);
@@ -84,6 +106,12 @@ public class HealthBar {
 	
 	private int combinedDamage;
 	private int baseHealth;
+	
+	/**
+	 * draws the current mmonsters health bar onto the screen
+	 * @author fuelvin
+	 * @param g graphics screen of where to draw health bar on
+	 */
 	private void drawHealthBar(Graphics g) {
 		if(type == 0) {
 			combinedDamage = Monster.baseHealth - Monster.health;
@@ -105,6 +133,11 @@ public class HealthBar {
 		healthText.render(g);
 	}
 	
+	/**
+	 * draws the current players health bar onto the screen
+	 * @author fuelvin
+	 * @param g graphics screen of where to draw health bar on
+	 */
 	private void drawHealthBar2(Graphics g) {
 		Graphics2D g2d = (Graphics2D) g;
 		int cc = 110;

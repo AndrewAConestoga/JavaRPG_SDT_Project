@@ -2,6 +2,10 @@ package Assets;
 
 import java.awt.Graphics;
 
+/**
+ * class used to draw text onto the game screen
+ * @author fuelvin
+ */
 public class Text {
 	private String s;
 	private int x;
@@ -12,6 +16,15 @@ public class Text {
 	private int letterCount;
 	private boolean show;
 	
+	/**
+	 * creates a new instance of Text
+	 * @author fuelvin
+	 * @param s string of text be be drawn to screen
+	 * @param x x position where the text will start being drawn
+	 * @param y y position where the text will start being drawn
+	 * @param multiplier size of the text being drawn 
+	 * @param type the type of text being drawn to the screen 
+	 */
 	public Text(String s, int x, int y, int multiplier, int type) {
 		this.s = s;
 		this.x = x;
@@ -117,12 +130,28 @@ public class Text {
 		s = health + "/" + baseHealth;
 	}
 	
+	/**
+	 * setter for y
+	 * @author fuelvin
+	 * @param y new y position to draw text to
+	 */
 	public void setY(int y) {
 		this.y = y;
 	}
 	
 	private int maxLetters;
 	private boolean f;
+	
+	/**
+	 * draws a string onto the screen
+	 * @author fuelvin
+	 * @param g graphics to draw to
+	 * @param s string to render onto the screen
+	 * @param j unused
+	 * @param x x position on screen to draw text to 
+	 * @param y y position on screen to draw text to 
+	 * @param type type of the text being drawn to the screen
+	 */
 	private void alphabetRender(Graphics g, String s, int j, int x, int y, int type) {
 		if(!f) {
 			maxLetters++;

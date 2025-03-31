@@ -19,7 +19,7 @@ public abstract class Entity {
 	
 	/**
 	 * creates a new instance of Entity
-	 * @param handler Handler object that will be used to manipulate this object
+	 * @param handler Handler used to access game information from
 	 * @param x x position of where to draw entity on screen
 	 * @param y y position of where to draw entity on screen
 	 * @param width width of entity in pixels on screen

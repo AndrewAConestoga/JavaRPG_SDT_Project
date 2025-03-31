@@ -14,13 +14,16 @@ import Assets.Monster;
 import Assets.MonsterInterface;
 import Assets.Transition;
 import Decorator.HealthyMonster;
-import Decorator.StrongMonster;
 import Game.Handler;
 import Game.UIImageButton;
 import Game.UIManager;
 import Game.ClickListener;
 import Game.Game;
 
+/**
+ * class that holds the information about the battle state where player fights a monster
+ * @author fuelvin
+ */
 public class BattleState extends State{
 	Handler handler;
 	Bar bar;
@@ -36,18 +39,22 @@ public class BattleState extends State{
 	public static boolean changedTurn;
 	public static boolean switchGameStates;
 
+	/**
+	 * creates a new instance of BattleState
+	 * @author fuelvin
+	 * @param handler Handler to access game information from
+	 */
 	public BattleState(Handler handler) {
 		super(handler);
 		showBars = false;
 		playerAttack = true;
 		this.handler = handler;
-		
+		bar = new Bar(handler, monster);
 		
 		
 		Monster radishMonster = new Monster("Bad Radish", Assets.monsters[1], 23 * 4, 41 * 4, 480, 110, 10, 20, 1, handler);
-		Monster slimeMonster = new Monster("Angry Slime", Assets.monsters[0], 38 * 4, 27 * 4, 440, 160, 30, 20, 1, handler);
-		StrongMonster strongSlime = new StrongMonster(slimeMonster, 5);
-		monsters.add(strongSlime);
+
+
 		monsters.add(radishMonster);
 		System.out.println("Added regular radish");
 		HealthyMonster healthyRadish = new HealthyMonster(radishMonster, 20);
@@ -63,12 +70,16 @@ public class BattleState extends State{
 		inGamePlayer = new InGamePlayer(handler);
 		attackBarManager = new AttackBarManager(handler);
 		switchGameStates = false;
-		bar = new Bar(handler, monster);
 		initializeUI();
 	}
 
 	private boolean f;
+	
 	@Override
+	/**
+	 * called once per frame, calls the tick function for the battle state UIObjects
+	 * @author fuelvin
+	 */
 	public void tick() {
 		if(showBars) {
 			bar.tick();
@@ -94,6 +105,11 @@ public class BattleState extends State{
 		
 	}
 
+	/**
+	 * draws the battle state to the screen
+	 * @author fuelvin
+	 * @param g graphics screen to draw state to
+	 */
 	@Override
 	public void render(Graphics g) {
 		drawBackground(g);
@@ -121,6 +137,10 @@ public class BattleState extends State{
 		
 	}
 	
+	/**
+	 * swtiches the games context to the game state after battle is complete
+	 * @author fuelvin
+	 */
 	private void switchToGameState() {
 		if (Game.sPlayer.health > 0) {
 			handler.savePlayer();
@@ -134,6 +154,10 @@ public class BattleState extends State{
 		destroy();
 	}
 
+	/**
+	 * initializes all the UIObjects that are displayed during the battle state
+	 * @author fuelvin
+	 */
 	private void initializeUI() {
 		uiManager = new UIManager(handler);
 		arrowManager = new UIManager(handler);
@@ -178,6 +202,11 @@ public class BattleState extends State{
 		
 	}
 	
+	/**
+	 * draws background on the screen
+	 * @author fuelvin
+	 * @param g graphics screen to draw background on
+	 */
 	private void drawBackground(Graphics g) {
 		Color c = new Color(0, 203, 3);
 		g.setColor(c);
@@ -191,6 +220,11 @@ public class BattleState extends State{
 		g.drawImage(Assets.grassPlatform, 356, 180, 86 * 4, 37 * 4, null);
 	}
 	
+	/**
+	 * draws squares to the screen
+	 * @author fuelvin
+	 * @param g graphics screen to draw squares on
+	 */
 	private void drawSquares(Graphics g) {
 		Color d = new Color(184, 184, 184);
 		g.setColor(d);
@@ -218,6 +252,10 @@ public class BattleState extends State{
 
 	}
 	
+	/**
+	 * called when game switches away from battle state, destroys the attackBarManager
+	 * @author fuelvin
+	 */
 	public void destroy() {
 		attackBarManager.destroy();
 	}

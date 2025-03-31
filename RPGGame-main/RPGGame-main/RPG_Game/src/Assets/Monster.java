@@ -11,6 +11,10 @@ import Game.Game;
 import Game.Handler;
 import States.BattleState;
 
+/**
+ * class for monster that player will fight during the game, holds all the monsters values 
+ * @author fuelvin
+ */
 public class Monster implements MonsterInterface{
 	
 	protected BufferedImage img;
@@ -36,6 +40,20 @@ public class Monster implements MonsterInterface{
 	private int x;
 	private int y;
 	
+	/**
+	 * creates a new instance of a monster object
+	 * @author fuelvin
+	 * @param name name of the monster
+	 * @param img image to be used to display the monster
+	 * @param width width of monster in pixels on screen
+	 * @param height height of monster in pixels on screen
+	 * @param x top left x position of where to draw monster on screen
+	 * @param y top left y position of where to draw monster on screen
+	 * @param health the amount of health the monster has
+	 * @param attack the amount of damage the monster does
+	 * @param level the level of the monster
+	 * @param handler Handler used to access game information from
+	 */
 	public Monster(String name, BufferedImage img, int width, int height, int x, int y, int health, int attack, int level, Handler handler) {
 		this.img = img;
 		this.width = width;
@@ -60,7 +78,11 @@ public class Monster implements MonsterInterface{
 		f2 = false;
 	}
 	
-	
+	/**
+	 * called once per frame, calls tick on the monster description and CoinAndXp when defeated and adds time elapsed to the timer
+	 * for moving the monster when it is attacked
+	 * @author fuelvin
+	 */
 	public void tick() {
 		timer += System.currentTimeMillis() - lastTime;
 		lastTime = System.currentTimeMillis();
@@ -135,6 +157,11 @@ public class Monster implements MonsterInterface{
 		
 	}
 	
+	/**
+	 * displays the xp and coin rewards in text on the game screen when this monster is defeated
+	 * @author fuelvin
+	 * @param g graphics screen to display to
+	 */
 	private void reward(Graphics g) {
 		Graphics2D g2d = (Graphics2D) g;
 		deathState = 2;
@@ -149,6 +176,13 @@ public class Monster implements MonsterInterface{
 	}
 	
 	int i = 0;
+	
+	/**
+	 * adjusts the monster position depending on the state of the attack bar manager, in other words
+	 * moves the monster when the player attacks
+	 * @author fuelvin
+	 * @param g graphics screen to display to
+	 */
 	private void moveEffect() {
 		if(AttackBarManager.slash) {
 			if(!AttackBarManager.critical) {
@@ -186,27 +220,51 @@ public class Monster implements MonsterInterface{
 			i = 0;
 		}
 	}
+	
+	/**
+	 * getter for health
+	 * @author fuelvin
+	 * @return the integer value of this monsters health
+	 */
 	@Override
 	public int getHealth() {
 		return health;
 	}
 
+	/**
+	 * setter for health
+	 * @author fuelvin
+	 * @param health value to set this monster current health to
+	 */
 	@Override
 	public void setHealth(int health) {
 		this.health = health;
 	}
 
+	/**
+	 * setter for baseHealth
+	 * @author fuelvin
+	 * @param health value to set this monster base health to
+	 */
 	@Override
 	public void setBaseHealth(int health) {
 		this.baseHealth = health;
 	}
 	
-	@Override
+	/**
+	 * getter for attack
+	 * @author fuelvin
+	 * @return the monsters attack stat
+	 */
 	public int getAttack() {
 		return attack;
 	}
 	
-	@Override
+	/**
+	 * setter for attack
+	 * @author fuelvin
+	 * @param attack new value of the monsters attack stat
+	 */
 	public void setAttack(int attack) {
 		this.attack = attack;
 	}

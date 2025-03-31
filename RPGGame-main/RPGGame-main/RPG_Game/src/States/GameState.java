@@ -7,6 +7,10 @@ import Game.Game;
 import Game.Handler;
 import Game.World;
 
+/**
+ * class holding game state information for when the player is roaming the world
+ * @author fuelvin
+ */
 public class GameState extends State{
 	
 	private World world;
@@ -14,6 +18,11 @@ public class GameState extends State{
 	private Description playerDescription;
 	private Text coinsText;
 
+	/**
+	 * creates a new instance of GameState
+	 * @author fuelvin
+	 * @param handler Handler to access game information from
+	 */
 	public GameState(Handler handler) {
 		super(handler); //calls constructor of "State" class
 		world = new World(handler, "res/worlds/world1.txt");
@@ -22,12 +31,20 @@ public class GameState extends State{
 	}
 	
 
-	
+	/**
+	 * called once per frame 
+	 * @author fuelvin
+	 */
 	@Override
 	public void tick() {
 		world.tick();
 	}
 
+	/**
+	 * draws the game state to the screen
+	 * @author fuelvin
+	 * @param g graphics screen to draw state to
+	 */
 	@Override
 	public void render(Graphics g) {
 		world.render(g);

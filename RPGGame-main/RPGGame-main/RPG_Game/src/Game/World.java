@@ -8,6 +8,10 @@ import Assets.Player;
 import Assets.Tree;
 import Assets.Tile;
 
+/**
+ * class to load and display a game world for the player to play in
+ * @author fuelvin
+ */
 public class World {
 
 	private Handler handler;
@@ -18,7 +22,12 @@ public class World {
 	
 	private EntityManager entityManager;
 
-	
+	/**
+	 * creates a new instance of World
+	 * @author fuelvin
+	 * @param handler Handler to access game information from
+	 * @param path filepath of world file to load
+	 */
 	public World(Handler handler, String path) {
 		this.handler = handler;
 		entityManager = new EntityManager(handler);
@@ -37,14 +46,28 @@ public class World {
 		} 
 	}
 	
+	/**
+	 * getter for EntityManager
+	 * @author fuelvin
+	 * @return this objects EntityManager
+	 */
 	public EntityManager getEntityManager() {
 		return entityManager;
 	}
 
+	/**
+	 * called once per frame, calls the tick() function of the entityManager
+	 * @author fuelvin
+	 */
 	public void tick() {
 		entityManager.tick();
 	}
 	
+	/**
+	 * draws self on the game screen
+	 * @author fuelvin
+	 * @param g graphics to draw to
+	 */
 	public void render(Graphics g) {
 		int xStart = (int) Math.max(0, handler.getGameCamera().getxOffset() / Tile.TILEWIDTH);
 		int xEnd = (int) Math.min(width, (handler.getGameCamera().getxOffset() + handler.getWidth()) / Tile.TILEWIDTH + 1);
@@ -71,6 +94,13 @@ public class World {
 		}
 	}
 	
+	/**
+	 * getter for tile at specific location
+	 * @author fuelvin
+	 * @param x column of tile to get
+	 * @param y row of tile to get
+	 * @return tile at position (x,y)
+	 */
 	public Tile getTile(int x, int y) {
 		if(x < 0 || y < 0 || x >= width || y >= height) {
 			return Tile.grassTile;
@@ -83,6 +113,11 @@ public class World {
 		return t;
 	}
 	
+	/**
+	 * loads a new world 
+	 * @author fuelvin
+	 * @param path filepath of world file to load
+	 */
 	private void loadWorld(String path) {
 		System.out.println(path);
 		String file = Utils.loadFileAsString(path);
@@ -102,26 +137,56 @@ public class World {
 		
 	}
 	
+	/**
+	 * getter for width
+	 * @author fuelvin
+	 * @return width of the world
+	 */
 	public int getWidth() {
 		return width;
 	}
 	
+	/**
+	 * getter for height
+	 * @author fuelvin
+	 * @return height of the world
+	 */
 	public int getHeight() {
 		return height;
 	}
 	
+	/**
+	 * getter for spawnX
+	 * @author fuelvin
+	 * @return spawnX position for the world
+	 */
 	public int getSpawnX() {
 		return spawnX;
 	}
 	
+	/**
+	 * getter for spawnY
+	 * @author fuelvin
+	 * @return spawnY position for the world
+	 */
 	public int getSpawnY() {
 		return spawnY;
 	}
 	
+	/**
+	 * setter for spawnX
+	 * @author fuelvin
+	 * @param new spawnX position for the world
+	 */
 	public void setSpawnX(int spawnX) {
 		this.spawnX = spawnX;
 	}
 	
+	/**
+	 * setter for spawnY
+	 * @author fuelvin
+	 * @param new spawnY position for the world
+	 */
 	public void setSpawnY(int spawnY) {
 		this.spawnY = spawnY;
 	}

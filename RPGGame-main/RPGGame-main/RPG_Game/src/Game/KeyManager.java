@@ -3,6 +3,10 @@ package Game;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+/**
+ * class used to listen for key inputs from the user
+ * @author fuelvin
+ */
 public class KeyManager implements KeyListener{
 	
 	private boolean[] mKeys;
@@ -13,12 +17,17 @@ public class KeyManager implements KeyListener{
 	private int mBackup = -1;
 	public static boolean isMoving = false;
 	
+	/**
+	 * creates a new instance of KeyManager
+	 * @author fuelvin
+	 */
 	public KeyManager() {
 		this.mKeys = new boolean[256];
 	}
 	
 	/**
-	 * Updates keys to values in list
+	 * called once per frame, sets the values of which keys are currently pressed
+	 * @author fuelvin
 	 */
 	public void tick() {
 		up = this.mKeys[KeyEvent.VK_W];
@@ -33,6 +42,11 @@ public class KeyManager implements KeyListener{
 		space = this.mKeys[KeyEvent.VK_SPACE];
 	}
 
+	/**
+	 * this function is called whenever the user presses down on a key
+	 * @author fuelvin
+	 * @param e holds information detailing which key was pressed
+	 */
 	@Override
 	public void keyPressed(KeyEvent e) {
 		// Prevent the function from going beyond indexes
@@ -50,6 +64,11 @@ public class KeyManager implements KeyListener{
 		this.mKeys[this.mCurrent] = true;
 	}
 
+	/**
+	 * this function is called whenever the user releases a pressed key
+	 * @author fuelvin
+	 * @param e holds information detailing which key was released
+	 */
 	@Override
 	public void keyReleased(KeyEvent e) {
 		if (e.getKeyCode() >= this.mKeys.length) {
@@ -75,6 +94,11 @@ public class KeyManager implements KeyListener{
 		}
 	}
 
+	/**
+	 * this function is called whenever the user types a key
+	 * @author fuelvin
+	 * @param e holds information detailing which key was typed
+	 */
 	@Override
 	public void keyTyped(KeyEvent e) {}
 }

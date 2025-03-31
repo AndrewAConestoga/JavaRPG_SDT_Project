@@ -11,6 +11,10 @@ import States.GameState;
 import States.MenuState;
 import States.State;
 
+/**
+ * game class that handles all the logic for controlling the game and changing game states
+ * @author fuelvin
+ */
 public class Game {
 	
 	private Display display;
@@ -46,6 +50,13 @@ public class Game {
 	private int mFpsCount;
 	private double mTimePerTick; 
 	
+	/**
+	 * creates a new instance of a Game
+	 * @author fuelvin
+	 * @param title title of the window to be set to that will be created
+	 * @param width width of the window in pixels that will be created
+	 * @param height heigh of the window in pixels that will be created
+	 */
 	public Game(String title, int width, int height) {
 		// Window info
 		this.mWidth = width;
@@ -77,7 +88,8 @@ public class Game {
 	}
 	
 	/**
-	 * Starts the game
+	 * starts the game
+	 * @author fuelvin
 	 */
 	public void start() {
 		// Data preparation
@@ -107,7 +119,8 @@ public class Game {
 	}
 	
 	/**
-	 * Updates window objects
+	 * called once per frame, updates all the window objects
+	 * @author fuelvin
 	 */
 	private void tick() {
 		// Game ticks
@@ -133,7 +146,8 @@ public class Game {
 	}
 	
 	/**
-	 * Renders the window objects
+	 * renders the state of all the game objects in the current context to the screen
+	 * @author fuelvin
 	 */
 	private void render() {
 		this.mBs = display.getCanvas().getBufferStrategy();
@@ -147,7 +161,6 @@ public class Game {
 		this.mGraphics.clearRect(0, 0, this.mWidth, this.mHeight);
 		
 		//Draws stuff in the screen-
-		
 		if(State.getState() != null) {
 			State.getState().render(this.mGraphics);
 		}
@@ -162,22 +175,47 @@ public class Game {
 	}
 
 	
+	/**
+	 * getter for KeyManager
+	 * @author fuelvin
+	 * @return the games KeyManager
+	 */
 	public KeyManager getKeyManager() {
 		return this.mKeyManager;
 	}
 	
+	/**
+	 * getter for MouseManager
+	 * @author fuelvin
+	 * @return the games MouseManager
+	 */
 	public MouseManager getMouseManager() {
 		return this.mMouseManager;
 	}
 	
+	/**
+	 * getter for GameCamera
+	 * @author fuelvin
+	 * @return the games GameCamera
+	 */
 	public GameCamera getGameCamera() {
 		return this.mGameCamera;
 	}
 	
+	/**
+	 * getter for width
+	 * @author fuelvin
+	 * @return the width of the screen in integer pixels
+	 */
 	public int getWidth() {
 		return this.mWidth;
 	}
 	
+	/**
+	 * getter for height
+	 * @author fuelvin
+	 * @return the height of the screen in integer pixels
+	 */
 	public int getHeight() {
 		return this.mHeight;
 	}	

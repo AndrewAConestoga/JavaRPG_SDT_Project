@@ -28,6 +28,12 @@ public class Bar {
 	private Handler handler;
 	private MonsterInterface monster;
 	
+	/**
+	 * creates a new instance of Bar
+	 * @author fuelvin
+	 * @param handler Handler used to access game information from
+	 * @param monster owner of the bar
+	 */
 	public Bar(Handler handler, MonsterInterface monster) {
 		barWidth = 1;
 		barHeight = 50;

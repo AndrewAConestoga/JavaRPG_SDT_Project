@@ -31,7 +31,7 @@ public class Description {
 	 * @param level level of the owner creature
 	 * @param x top left x position of where to draw description on screen
 	 * @param y top left y position of where to draw description on screen
-	 * @param handler Handler object that will be used to manipulate this object
+	 * @param handler Handler used to access game information from
 	 */
 	public Description(int type, String name, int health, int baseHealth, int level, int x, int y, Handler handler) {
 		nameText = new Text(name, x - 4, y + 22, 4, -1);

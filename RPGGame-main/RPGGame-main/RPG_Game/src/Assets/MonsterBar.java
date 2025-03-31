@@ -11,6 +11,11 @@ import Game.Game;
 import Game.Handler;
 import States.BattleState;
 
+
+/**
+ * class for displaying monster bars when monster is attacking player  
+ * @author fuelvin
+ */
 public class MonsterBar {
 	
 	private float width;
@@ -28,6 +33,19 @@ public class MonsterBar {
 	private Handler handler;
 	private MonsterInterface monster;
 	
+	/**
+   	 * creates a new instance of MonsterBar
+   	 * @author fuelvin
+   	 * @param minWidth shortest width of the attack bar
+   	 * @param maxWidth largest width of the attack bar
+   	 * @param minSpeed slowest speed for the bar to move
+   	 * @param maxSpeed fastest speed for the bar to move
+   	 * @param minTimer shortest time in seconds for the bar to be displayed
+   	 * @param maxTimer longest time in seconds for the bar to be displayed
+   	 * @param id id number of the MonsterBar
+   	 * @param handler Handler used to access game information from
+   	 * @param monster monster attacking the player
+   	 */
 	public MonsterBar(float minWidth, float maxWidth, float minSpeed, float maxSpeed, int minTimer, int maxTimer, int id, Handler handler, MonsterInterface monster) {
 		this.width = (float)(minWidth + (Math.random() * (maxWidth - minWidth)));
 		this.speed = (float)(minSpeed + (Math.random() * (maxSpeed - minSpeed)));

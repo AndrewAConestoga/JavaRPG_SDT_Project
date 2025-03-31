@@ -17,7 +17,7 @@ public class Tree extends Entity{
 	/**
 	 * creates a new instance of a tree
 	 * @author fuelvin
-	 * @param handler Handler object that will be used to manipulate this object
+	 * @param handler Handler used to access game information from
 	 * @param x x position of where to draw tree on screen
 	 * @param y y position of where to draw tree on screen
 	 * @param type sets the type of the tree
