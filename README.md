@@ -1,17 +1,18 @@
-# eclipse-rpg-game
+# RPGGame
 
-Tile-based RPG game with a turn-based battling system; created 100% using the Eclipse IDE and Java.
+Complete pixel RPG with tilemap generator, battling system, and level system by Elvin. Created with Java using the Eclipse IDE.
 
---
+Created Dec. 2017 - Jun. 2018
 
-Developed from Dec. 2017 to Jun. 2018
+Added to Github on May 2021
 
-Added to Github May 2022
 
---
-
-HOW TO PLAY
+INSTRUCTIONS
 
 Arrow keys or WASD to move.
 
-Space to attack/defend during the player and enemy turn.
+Z to select option during a battle.
+
+Z to go to next dialogue.
+
+Z or Space to attack during the attack portion.
