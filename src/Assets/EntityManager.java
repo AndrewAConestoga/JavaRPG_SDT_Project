@@ -1,18 +1,18 @@
 package Assets;
 
-import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Iterator;
 
 import Game.Game;
 import Game.Handler;
+import MyIterator.IteratorInterface;
 
 /**
  * class for containing and manager all entities and the player
  * @author fuelvin
  */
-public class EntityManager {
+public class EntityManager implements IteratorInterface {
 	
 	private Handler handler;
 	private Player player;
@@ -130,7 +130,8 @@ public class EntityManager {
 	 * @author fuelvin
 	 * @return all the entities in this manager as a list
 	 */
-	public Iterator<Entity> getEntitiesIterator() {
+	@Override
+	public Iterator<Entity> getIterator() {
 		return entities.iterator();
 	}
 
