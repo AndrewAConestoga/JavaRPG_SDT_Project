@@ -75,11 +75,11 @@ public class Bar {
 				playerBarRender(g);
 				Color c = new Color(0, 0, 0);
 				g.setColor(c);
-				g.drawImage(Assets.critBar, randomX - 6, height, 12, 50, null);
+				g.drawImage(Asset.critBar, randomX - 6, height, 12, 50, null);
 			} else {
 				enemyBarRender(g);
 			}
-			g.drawImage(Assets.bar, 100, height - 1, 150 * 4, 13 * 4, null);
+			g.drawImage(Asset.bar, 100, height - 1, 150 * 4, 13 * 4, null);
 			x = 0;
 			v = 0;
 			

@@ -6,7 +6,7 @@ import java.awt.Graphics;
 import java.util.ArrayList;
 
 import Assets.Arrow;
-import Assets.Assets;
+import Assets.Asset;
 import Assets.AttackBarManager;
 import Assets.Bar;
 import Assets.InGamePlayer;
@@ -52,7 +52,7 @@ public class BattleState extends State{
 		bar = new Bar(handler, monster);
 		
 		
-		Monster radishMonster = new Monster("Bad Radish", Assets.monsters[1], 23 * 4, 41 * 4, 480, 110, 10, 20, 1, handler);
+		Monster radishMonster = new Monster("Bad Radish", Asset.monsters[1], 23 * 4, 41 * 4, 480, 110, 10, 20, 1, handler);
 
 
 		monsters.add(radishMonster);
@@ -60,7 +60,7 @@ public class BattleState extends State{
 		HealthyMonster healthyRadish = new HealthyMonster(radishMonster, 20);
 		monsters.add(healthyRadish);
 		System.out.println("Added healthy radish");
-		monsters.add(new Monster("Green Slime", Assets.monsters[0], 38 * 4, 27 * 4, 440, 160, 30, 20, 1, handler));
+		monsters.add(new Monster("Green Slime", Asset.monsters[0], 38 * 4, 27 * 4, 440, 160, 30, 20, 1, handler));
 		System.out.println("Added green slime");
 		
 	
@@ -163,14 +163,14 @@ public class BattleState extends State{
 		arrowManager = new UIManager(handler);
 		handler.getMouseManager().setUIManager(uiManager);
 		
-		uiManager.addObject(new UIImageButton(50, 680, 49 * 4, 17 * 4, Assets.attackButton, new ClickListener() {
+		uiManager.addObject(new UIImageButton(50, 680, 49 * 4, 17 * 4, Asset.attackButton, new ClickListener() {
 			@Override
 			public void onClick() {
 				showBars = true;
 			}
 			}));
 		
-		uiManager.addObject(new UIImageButton(300, 680, 49 * 4, 17 * 4, Assets.statsButton, new ClickListener() {
+		uiManager.addObject(new UIImageButton(300, 680, 49 * 4, 17 * 4, Asset.statsButton, new ClickListener() {
 			@Override
 			public void onClick() {
 				if(!showBars) {
@@ -179,7 +179,7 @@ public class BattleState extends State{
 			}
 			}));
 		
-		uiManager.addObject(new UIImageButton(550, 680, 49 * 4, 17 * 4, Assets.escapeButton, new ClickListener() {
+		uiManager.addObject(new UIImageButton(550, 680, 49 * 4, 17 * 4, Asset.escapeButton, new ClickListener() {
 			@Override
 			public void onClick() {
 				if(!showBars) {
@@ -189,7 +189,7 @@ public class BattleState extends State{
 			}
 			}));
 		
-		arrowManager.addObject(new Arrow(715, 728, 12 * 2, 12 * 2, Assets.arrow, new ClickListener() {
+		arrowManager.addObject(new Arrow(715, 728, 12 * 2, 12 * 2, Asset.arrow, new ClickListener() {
 			@Override
 			public void onClick() {
 				if(Monster.deathState <= 4 && Monster.deathState >= 2) {
@@ -211,13 +211,13 @@ public class BattleState extends State{
 		Color c = new Color(0, 203, 3);
 		g.setColor(c);
 		g.fillRect(0, 0, 800, 800);
-		g.drawImage(Assets.barGrass, -75, 524, 110 * 8, 85 * 4, null);
+		g.drawImage(Asset.barGrass, -75, 524, 110 * 8, 85 * 4, null);
 		
 		//c = new Color(147, 147, 147);
 		//g.setColor(c);
 		//g.fillRect(25, 550, 750, 230);
-		g.drawImage(Assets.greySquare, 28, 558, 185 * 4, 55 * 4, null);
-		g.drawImage(Assets.grassPlatform, 356, 180, 86 * 4, 37 * 4, null);
+		g.drawImage(Asset.greySquare, 28, 558, 185 * 4, 55 * 4, null);
+		g.drawImage(Asset.grassPlatform, 356, 180, 86 * 4, 37 * 4, null);
 	}
 	
 	/**

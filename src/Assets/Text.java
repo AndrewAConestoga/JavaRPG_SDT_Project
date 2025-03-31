@@ -47,17 +47,17 @@ public class Text {
 				if(s.charAt(i) == ' ') {
 					count -= multiplier;
 					start += 5 * multiplier + count;
-					g.drawImage(Assets.miniAlphabet[26], start, y, 3 * multiplier, 6 * multiplier, null);
+					g.drawImage(Asset.miniAlphabet[26], start, y, 3 * multiplier, 6 * multiplier, null);
 				} else if(s.toLowerCase().charAt(i) == 'm' || s.toLowerCase().charAt(i) == 'w'){
 					count += multiplier;
 					start += 5 * multiplier;
-					g.drawImage(Assets.miniAlphabet[(s.toLowerCase().charAt(i) - 97)], start, y, 5 * multiplier, 6 * multiplier, null);
+					g.drawImage(Asset.miniAlphabet[(s.toLowerCase().charAt(i) - 97)], start, y, 5 * multiplier, 6 * multiplier, null);
 				} else if(s.charAt(i) == '!') {
 					start += 5 * multiplier + count;
-					g.drawImage(Assets.miniAlphabet[27], start, y, 3 * multiplier, 6 * multiplier, null);
+					g.drawImage(Asset.miniAlphabet[27], start, y, 3 * multiplier, 6 * multiplier, null);
 				} else {
 					start += 5 * multiplier + count;
-					g.drawImage(Assets.miniAlphabet[(s.toLowerCase().charAt(i) - 97)], start, y, 4 * multiplier, 6 * multiplier, null);
+					g.drawImage(Asset.miniAlphabet[(s.toLowerCase().charAt(i) - 97)], start, y, 4 * multiplier, 6 * multiplier, null);
 					count = 0;
 				}
 			}
@@ -82,28 +82,28 @@ public class Text {
 		} else if(type == 1) {
 			for(int i = 0; i < s.length(); i++) {
 				if(s.charAt(i) == '/') {
-					g.drawImage(Assets.numbers[10], x + i * 5 * multiplier, y, 4 * multiplier, 6 * multiplier, null);
+					g.drawImage(Asset.numbers[10], x + i * 5 * multiplier, y, 4 * multiplier, 6 * multiplier, null);
 				} else {
 					if(s.charAt(i) != '-') {
-						g.drawImage(Assets.numbers[s.charAt(i) - 48], x + i * 5 * multiplier, y, 4 * multiplier, 6 * multiplier, null);
+						g.drawImage(Asset.numbers[s.charAt(i) - 48], x + i * 5 * multiplier, y, 4 * multiplier, 6 * multiplier, null);
 					}
 				}
 			}
 		} else if(type == 2) {
 			for(int i = 0; i < s.length(); i++) {
-				g.drawImage(Assets.damageNumbers[s.charAt(i) - 48], x + i * 7 * multiplier, y, 7 * multiplier, 8 * multiplier, null);
+				g.drawImage(Asset.damageNumbers[s.charAt(i) - 48], x + i * 7 * multiplier, y, 7 * multiplier, 8 * multiplier, null);
 			}
 		} else if(type == 3) {
 			for(int i = 0; i < s.length(); i++) {
 				if(s.charAt(i) == '-') {
-					g.drawImage(Assets.redNumbers[0], x + i * 5 * multiplier, y, 4 * multiplier, 6 * multiplier, null);
+					g.drawImage(Asset.redNumbers[0], x + i * 5 * multiplier, y, 4 * multiplier, 6 * multiplier, null);
 				} else {
-					g.drawImage(Assets.redNumbers[(s.charAt(i) - 48) + 1], x + i * 5 * multiplier, y, 4 * multiplier, 6 * multiplier, null);
+					g.drawImage(Asset.redNumbers[(s.charAt(i) - 48) + 1], x + i * 5 * multiplier, y, 4 * multiplier, 6 * multiplier, null);
 				}
 			}
 		} else if(type == 4) {
 			for(int i = 0; i < s.length(); i++) {
-				g.drawImage(Assets.moneyNumbers[(s.charAt(i) - 48)], x + i * 5 * multiplier, y, 4 * multiplier, 6 * multiplier, null);
+				g.drawImage(Asset.moneyNumbers[(s.charAt(i) - 48)], x + i * 5 * multiplier, y, 4 * multiplier, 6 * multiplier, null);
 			}
 		} else if(type == 5) {
 			String delims = "[ ]+";
@@ -162,26 +162,26 @@ public class Text {
 			}
 			if(show) {
 				if(s.charAt(i) == ' ') {
-					g.drawImage(Assets.alphabet[26], x + letterCount * 6 * multiplier, y, 5 * multiplier, 8 * multiplier, null);
+					g.drawImage(Asset.alphabet[26], x + letterCount * 6 * multiplier, y, 5 * multiplier, 8 * multiplier, null);
 				} else if(s.charAt(i) == '!') {
-					g.drawImage(Assets.alphabet[27], x + letterCount * 6 * multiplier, y, 5 * multiplier, 8 * multiplier, null);
+					g.drawImage(Asset.alphabet[27], x + letterCount * 6 * multiplier, y, 5 * multiplier, 8 * multiplier, null);
 				} else {
 					if(s.charAt(i) == '/') {
-						g.drawImage(Assets.numbers[10], x + i * 5 * multiplier, y, 4 * multiplier, 6 * multiplier, null);
+						g.drawImage(Asset.numbers[10], x + i * 5 * multiplier, y, 4 * multiplier, 6 * multiplier, null);
 					} else if(s.charAt(i) != '-' && (s.charAt(i) == '1' ||  s.charAt(i) == '2' || s.charAt(i) == '3' || s.charAt(i) == '4' || s.charAt(i) == '5' || s.charAt(i) == '6' || s.charAt(i) == '7' || s.charAt(i) == '8' || s.charAt(i) == '9' || s.charAt(i) == '0')) {
 						if(type == 0) {
-							g.drawImage(Assets.moneyNumbers[s.charAt(i) - 48], x + letterCount * 6 * multiplier, y, 5 * multiplier, 8 * multiplier, null);
+							g.drawImage(Asset.moneyNumbers[s.charAt(i) - 48], x + letterCount * 6 * multiplier, y, 5 * multiplier, 8 * multiplier, null);
 						} else if(type == 1) {
-							g.drawImage(Assets.xpNumbers[s.charAt(i) - 48], x + letterCount * 6 * multiplier, y, 5 * multiplier, 8 * multiplier, null);
+							g.drawImage(Asset.xpNumbers[s.charAt(i) - 48], x + letterCount * 6 * multiplier, y, 5 * multiplier, 8 * multiplier, null);
 						}
 					} else {
-						g.drawImage(Assets.alphabet[(s.toLowerCase().charAt(i) - 97)], x + letterCount * 6 * multiplier, y, 5 * multiplier, 8 * multiplier, null);
+						g.drawImage(Asset.alphabet[(s.toLowerCase().charAt(i) - 97)], x + letterCount * 6 * multiplier, y, 5 * multiplier, 8 * multiplier, null);
 					}
 				}
 			}
 			letterCount++;
 		}
-		g.drawImage(Assets.alphabet[26], x + letterCount * 6 * multiplier, y, 5 * multiplier, 8 * multiplier, null);
+		g.drawImage(Asset.alphabet[26], x + letterCount * 6 * multiplier, y, 5 * multiplier, 8 * multiplier, null);
 		letterCount++;
 	}
 	

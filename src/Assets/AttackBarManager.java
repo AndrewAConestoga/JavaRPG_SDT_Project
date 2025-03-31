@@ -1,5 +1,6 @@
 package Assets;
 
+
 import java.awt.AlphaComposite;
 
 import java.awt.Graphics;
@@ -72,8 +73,8 @@ public class AttackBarManager {
 		turn2 = new Text("Enemy turn", 0, 600, 4, 0);
 		slash = false;
 		pressed = false;
-		slashAnimation = new Animation(35, Assets.slashAnimation);
-		attackBar = new Animation(90, Assets.attackBar);
+		slashAnimation = new Animation(35, Asset.slashAnimation);
+		attackBar = new Animation(90, Asset.attackBar);
 		timer.scheduleAtFixedRate(task, 1, 1);
 	}
 
@@ -110,7 +111,7 @@ public class AttackBarManager {
 	 */
 	public void render(Graphics g) {
 		if(Monster.deathState < 2) {
-			g.drawImage(Assets.attackBar[0], (int)(xVel) - 4, y, 4 * 2, 34 * 2, null);
+			g.drawImage(Asset.attackBar[0], (int)(xVel) - 4, y, 4 * 2, 34 * 2, null);
 			if(BattleState.playerAttack) {
 				if(!f2) {
 					f2 = true;

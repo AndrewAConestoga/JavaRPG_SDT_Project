@@ -15,31 +15,31 @@ public class Tile {
 	
 	// General info
 	public static Tile[] tiles = new Tile[256];
-	public static Tile grassTile = new Tile(Assets.grass, 0, false, false);
-	public static Tile bush = new Tile(Assets.bush, 1, false, false);
+	public static Tile grassTile = new Tile(Asset.grass, 0, false, false);
+	public static Tile bush = new Tile(Asset.bush, 1, false, false);
 
 	// Edges
-	public static Tile edgeLeft		= new Tile(Assets.edgeLeft, 2, true, false);
-	public static Tile edgeRight	= new Tile(Assets.edgeRight, 3, true, false);
-	public static Tile edgeTop		= new Tile(Assets.edgeTop, 4, true, false);
-	public static Tile edgeBottom	= new Tile(Assets.edgeBottom, 5, true, false);
+	public static Tile edgeLeft		= new Tile(Asset.edgeLeft, 2, true, false);
+	public static Tile edgeRight	= new Tile(Asset.edgeRight, 3, true, false);
+	public static Tile edgeTop		= new Tile(Asset.edgeTop, 4, true, false);
+	public static Tile edgeBottom	= new Tile(Asset.edgeBottom, 5, true, false);
 	
 	// Outer corners
-	public static Tile cornerOutTL	= new Tile(Assets.cornerOutTopLeft, 6, true, true);
-	public static Tile cornerOutTR	= new Tile(Assets.cornerOutTopRight, 7, true, true);
-	public static Tile cornerOutBL	= new Tile(Assets.cornerOutBottomLeft, 8, true, true);
-	public static Tile cornerOutBR	= new Tile(Assets.cornerOutBottomRight, 9, true, true);
+	public static Tile cornerOutTL	= new Tile(Asset.cornerOutTopLeft, 6, true, true);
+	public static Tile cornerOutTR	= new Tile(Asset.cornerOutTopRight, 7, true, true);
+	public static Tile cornerOutBL	= new Tile(Asset.cornerOutBottomLeft, 8, true, true);
+	public static Tile cornerOutBR	= new Tile(Asset.cornerOutBottomRight, 9, true, true);
 	
 	// Inner corners
-	public static Tile cornerInTL	= new Tile(Assets.cornerInTopLeft, 10, true, true);
-	public static Tile cornerInTR	= new Tile(Assets.cornerInTopRight, 11, true, true);
-	public static Tile cornerInBL	= new Tile(Assets.cornerInBottomLeft, 12, true, true);
-	public static Tile cornerInBR	= new Tile(Assets.cornerInBottomRight, 13, true, true);
+	public static Tile cornerInTL	= new Tile(Asset.cornerInTopLeft, 10, true, true);
+	public static Tile cornerInTR	= new Tile(Asset.cornerInTopRight, 11, true, true);
+	public static Tile cornerInBL	= new Tile(Asset.cornerInBottomLeft, 12, true, true);
+	public static Tile cornerInBR	= new Tile(Asset.cornerInBottomRight, 13, true, true);
 	
 	// Others
-	public static Tile ledgeMiddle = new Tile(Assets.ledge, 14, true, false);
-	public static Tile grassLedge = new Tile(Assets.grassLedge, 15, true, false);
-	public static Tile plateau = new Tile(Assets.plateau, 16, true, false);
+	public static Tile ledgeMiddle = new Tile(Asset.ledge, 14, true, false);
+	public static Tile grassLedge = new Tile(Asset.grassLedge, 15, true, false);
+	public static Tile plateau = new Tile(Asset.plateau, 16, true, false);
 	
 	
 	protected BufferedImage texture;

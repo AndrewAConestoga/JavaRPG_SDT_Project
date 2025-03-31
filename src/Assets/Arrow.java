@@ -71,7 +71,7 @@ public class Arrow extends UIObject{
 	 * @param g graphics to draw to
 	 */
 	public void render(Graphics g) {
-		g.drawImage(Assets.arrow[0], (int)(x + arrowX), (int)y, width, height, null);
+		g.drawImage(Asset.arrow[0], (int)(x + arrowX), (int)y, width, height, null);
 	}
 
 	/**

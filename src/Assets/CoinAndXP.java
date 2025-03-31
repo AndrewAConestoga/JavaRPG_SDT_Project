@@ -1,5 +1,6 @@
 package Assets;
 
+
 import java.awt.AlphaComposite;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -69,9 +70,9 @@ public class CoinAndXP {
 		g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, opacity));
 		
 		if(type == 0) {
-			g.drawImage(Assets.coin, x, y, 8 * 4, 8 * 4, null);
+			g.drawImage(Asset.coin, x, y, 8 * 4, 8 * 4, null);
 		} else {
-			g.drawImage(Assets.xp, x, y, 10 * 4, 8 * 4, null);
+			g.drawImage(Asset.xp, x, y, 10 * 4, 8 * 4, null);
 		}
 		g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1));
 	}

@@ -1,5 +1,6 @@
 package Assets;
 
+
 import java.awt.Graphics;
 
 /**
@@ -44,7 +45,7 @@ public class Level {
 	 * @param g graphics to draw to
 	 */
 	public void render(Graphics g) {
-		g.drawImage(Assets.monsterLevel, x + 304, y + 14, 92, 40, null);
+		g.drawImage(Asset.monsterLevel, x + 304, y + 14, 92, 40, null);
 		levelText.render(g);
 	}
 

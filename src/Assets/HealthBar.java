@@ -1,5 +1,6 @@
 package Assets;
 
+
 import java.awt.AlphaComposite;
 
 import java.awt.Color;
@@ -128,7 +129,7 @@ public class HealthBar {
 			g.fillRect(x + 74 + i , y + 72, 1, 40);
 		}
 		
-		g.drawImage(Assets.enemyHealthBar, x + 70, y + 72, 77 * 4, 10 * 4, null);
+		g.drawImage(Asset.enemyHealthBar, x + 70, y + 72, 77 * 4, 10 * 4, null);
 		
 		healthText.render(g);
 	}

@@ -1,3 +1,4 @@
+
 package States;
 
 import java.awt.Graphics;
@@ -5,7 +6,7 @@ import Game.ClickListener;
 import Game.Handler;
 import Game.UIImageButton;
 import Game.UIManager;
-import Assets.Assets;
+import Assets.Asset;
 
 /**
  * class for menu states for when player is in a menu
@@ -25,7 +26,7 @@ public class MenuState extends State{
 		uiManager = new UIManager(handler);
 		handler.getMouseManager().setUIManager(uiManager);
 		
-		uiManager.addObject(new UIImageButton(200, 200, 128, 64, Assets.buttonStart, new ClickListener() {
+		uiManager.addObject(new UIImageButton(200, 200, 128, 64, Asset.buttonStart, new ClickListener() {
 
 			@Override
 			public void onClick() {

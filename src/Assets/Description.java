@@ -1,5 +1,6 @@
 package Assets;
 
+
 import java.awt.Graphics;
 
 import Game.Handler;
@@ -94,14 +95,14 @@ public class Description {
 	 */
 	public void render(Graphics g) {
 		if(type == 0 || type == 1) {
-			g.drawImage(Assets.enemyDescription, x, y, 102 * 4, 33 * 4, null);
+			g.drawImage(Asset.enemyDescription, x, y, 102 * 4, 33 * 4, null);
 			levelDescription.render(g);
 			nameText.render(g);
 			healthBar.render(g);
 		} else if(type == 2) {
 			xpBar.render(g);
 			healthBar.render(g);
-			g.drawImage(Assets.playerDescription, 0, 0, 105 * 4, 38 * 4, null);
+			g.drawImage(Asset.playerDescription, 0, 0, 105 * 4, 38 * 4, null);
 		}
 	}
 	

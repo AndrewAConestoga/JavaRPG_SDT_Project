@@ -1,3 +1,4 @@
+
 package Assets;
 
 import java.awt.Color;
@@ -65,10 +66,10 @@ public class Player extends Creature {
 		level = 1;
 		name = "Fuelvin";
 
-		animDown = new Animation(120, Assets.player_down);
-		animUp = new Animation(120, Assets.player_up);
-		animLeft = new Animation(120, Assets.player_left);
-		animRight = new Animation(120, Assets.player_right);
+		animDown = new Animation(120, Asset.player_down);
+		animUp = new Animation(120, Asset.player_up);
+		animLeft = new Animation(120, Asset.player_left);
+		animRight = new Animation(120, Asset.player_right);
 		
 		this.inputUp = new PlayerInput(new PlayerMoveCommand(this, Direction.Up));
 		this.inputDown = new PlayerInput(new PlayerMoveCommand(this, Direction.Down));

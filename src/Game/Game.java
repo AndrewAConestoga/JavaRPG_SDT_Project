@@ -1,9 +1,10 @@
 package Game; //Adding res to build path: Project, properties, add class folder, select folder.
 
+
 import java.awt.Graphics;
 
 import java.awt.image.BufferStrategy;
-import Assets.Assets;
+import Assets.Asset;
 import Assets.Player;
 import Assets.Transition;
 import States.BattleState;
@@ -68,7 +69,7 @@ public class Game {
 		// Init window
 		display = new Display("RPG Game", this.mWidth, this.mHeight);
 		display.addManagers(this.mKeyManager, this.mMouseManager);
-		Assets.init();
+		Asset.init();
 		
 		// Setup handlers
 		this.mHandler = new Handler(this);

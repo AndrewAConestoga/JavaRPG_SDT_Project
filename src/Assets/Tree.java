@@ -46,7 +46,7 @@ public class Tree extends Entity{
 	 */
 	@Override
 	public void render(Graphics g) {
-		g.drawImage(Assets.trees[type], (int) (this.mX - this.mHandler.getGameCamera().getxOffset()), (int) (this.mY - this.mHandler.getGameCamera().getyOffset()), this.mWidth, this.mHeight, null);
+		g.drawImage(Asset.trees[type], (int) (this.mX - this.mHandler.getGameCamera().getxOffset()), (int) (this.mY - this.mHandler.getGameCamera().getyOffset()), this.mWidth, this.mHeight, null);
 		
 		if(Game.sShowHitboxes) {
 			g.setColor(Color.red);

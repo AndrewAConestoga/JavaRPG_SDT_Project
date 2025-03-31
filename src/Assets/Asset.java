@@ -9,7 +9,7 @@ import ImageStuff.SpriteSheet;
  * class that holds all the assets to be used in game
  * @author fuelvin
  */
-public class Assets {
+public class Asset {
 
 	private static final int width = 16; //Size of each tile in sprite sheet
 	private static final int height = 16;
