@@ -126,9 +126,9 @@ public class EntityManager implements IteratorInterface {
 	}
 
 	/**
-	 * getter for entities
-	 * @author fuelvin
-	 * @return all the entities in this manager as a list
+	 * Gets an iterator for a collection of entitites
+	 * @author Kyle Wagler
+	 * @return all the entities in this manager as an iterator
 	 */
 	@Override
 	public Iterator<Entity> getIterator() {
