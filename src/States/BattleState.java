@@ -49,7 +49,7 @@ public class BattleState extends State{
 		showBars = false;
 		playerAttack = true;
 		this.handler = handler;
-		bar = new Bar(handler, monster);
+		
 		
 		
 		Monster radishMonster = new Monster("Bad Radish", Asset.monsters[1], 23 * 4, 41 * 4, 480, 110, 10, 20, 1, handler);
@@ -70,6 +70,7 @@ public class BattleState extends State{
 		inGamePlayer = new InGamePlayer(handler);
 		attackBarManager = new AttackBarManager(handler);
 		switchGameStates = false;
+		bar = new Bar(handler, monster);
 		initializeUI();
 	}
 
