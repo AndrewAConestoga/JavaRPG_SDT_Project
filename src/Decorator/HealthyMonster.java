@@ -42,7 +42,7 @@ public class HealthyMonster extends MonsterDecorator {
      */
     @Override
     public int getHealth() {
-        return super.getHealth();
+        return super.getHealth() + healthBoost;
     }
 
 /**

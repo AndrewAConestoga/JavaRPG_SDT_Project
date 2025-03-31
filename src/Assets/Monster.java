@@ -145,6 +145,10 @@ public class Monster implements MonsterInterface{
 		} else if(deathState == 4) {
 			if(!f2) {
 				Game.sPlayer.xp += xp;
+				
+				if (Game.sPlayer.xp>=30) {
+					Game.sPlayer.levelUp();
+				}
 				f2 = true;
 			}
 			rewardsText2.render(g);
