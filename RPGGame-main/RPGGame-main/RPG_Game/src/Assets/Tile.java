@@ -7,6 +7,10 @@ import Game.Game;
 import Game.Handler;
 import Assets.Assets;
 
+/**
+ * tile class used to create tiles in the world for player to move through
+ * @author fuelvin
+ */
 public class Tile {
 	
 	public static Tile[] tiles = new Tile[256];
@@ -40,6 +44,14 @@ public class Tile {
 	protected boolean isSolid;
 	protected boolean isFront;
 
+	/**
+	 * creates a new instance of a tile obejct
+	 * @author fuelvin
+	 * @param texture texture/image of tile to be displayed
+	 * @param id id number of the tile
+	 * @param isSolid whether or not the tile has collision
+	 * @param isFront whether or not the tile is in front and should be displayed over other tiles
+	 */
 	public Tile(BufferedImage texture, int id, boolean isSolid, boolean isFront) {
 		this.texture = texture;
 		this.id = id;
@@ -48,22 +60,48 @@ public class Tile {
 		this.isFront = isFront;
 	}
 	
+	/**
+	 * called once per frame
+	 * @author fuelvin
+	 */
 	public void tick() {
 		
 	}
 	
+	/**
+	 * draws self on the game screen
+	 * @author fuelvin
+	 * @param g graphics to draw to
+	 * @param x top left x pixel on screen to draw image to
+	 * @param y top left y pixel on screen to draw image to
+	 */
 	public void render(Graphics g, int x, int y) {
 		g.drawImage(texture, x, y, TILEWIDTH, TILEHEIGHT, null);
 	}
 	
+	/**
+	 * getter for isSolid
+	 * @author fuelvin
+	 * @return true if the tile is solid or has collision, false if it does not
+	 */
 	public boolean isSolid() {
 		return isSolid;
 	}
 	
+	/**
+	 * getter for front
+	 * @author fuelvin
+	 * @return true front is true, false if it is not
+	 */
 	public boolean front() {
 		return isFront;
 	}
 	
+	/**
+	 * getter for id
+	 * @author fuelvin
+	 * @return the id number of the tile
+	 */
 	public int getId() {
 		return id;
 	}

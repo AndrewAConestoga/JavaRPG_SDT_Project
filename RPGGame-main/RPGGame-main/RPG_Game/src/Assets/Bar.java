@@ -8,6 +8,10 @@ import java.util.ArrayList;
 import Game.Handler;
 import States.BattleState;
 
+/**
+ * Bar used to display bars on the screen for both the player and the enemy
+ * @author fuelvin
+ */
 public class Bar {
 	public static int randomX = (int)(Math.random() * 540 + 150);
 	public static int randomX2 = (int)(Math.random() * 540 + 150);
@@ -33,6 +37,11 @@ public class Bar {
 	}
 	
 	private boolean render;
+	
+	/**
+	 * called once a frame, determines when to display the bar(s) on the screen
+	 * @author fuelvin
+	 */
 	public void tick() {
 		if(BattleState.playerAttack) {
 			render = false;
@@ -49,6 +58,11 @@ public class Bar {
 		}
 	}
 
+	/**
+	 * draws self on the game screen
+	 * @author fuelvin
+	 * @param g graphics to draw to
+	 */
 	public void render(Graphics g) {
 		if(Monster.deathState < 2) {
 			if(BattleState.playerAttack) {
@@ -75,12 +89,22 @@ public class Bar {
 		}
 	}
 	
+	/**
+	 * displays the enemies bar
+	 * @author fuelvin
+	 * @param g graphics screen to draw object on
+	 */
 	private void enemyBarRender(Graphics g) {
 		Color c = new Color(255, 0, 0);
 		g.setColor(c);
 		g.fillRect(100, height, 600, barHeight);
 	}
 	
+	/**
+	 * displays the players bar
+	 * @author fuelvin
+	 * @param g graphics screen to draw object on
+	 */
 	private void playerBarRender(Graphics g) {
 		for(int i = 0; i < 10; i++) {
 			drawBar(g, v, 255, 0);
@@ -110,6 +134,11 @@ public class Bar {
 		}
 	}
 	
+	/**
+	 * displays a basic bar
+	 * @author fuelvin
+	 * @param g graphics screen to draw object on
+	 */
 	private void drawBar(Graphics g, int r, int gr, int b) {
 		Color c = new Color(r, gr, b);
 		g.setColor(c);

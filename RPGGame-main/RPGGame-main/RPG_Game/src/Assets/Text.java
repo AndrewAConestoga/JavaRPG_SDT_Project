@@ -21,6 +21,12 @@ public class Text {
 	}
 	
 	private int count;
+	
+	/**
+	 * draws self on the game screen
+	 * @author fuelvin
+	 * @param g graphics to draw to
+	 */
 	public void render(Graphics g) {
 		if(type == -1) {
 			start = x;

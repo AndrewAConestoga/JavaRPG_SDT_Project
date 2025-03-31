@@ -1,9 +1,6 @@
 package States;
 
-import java.awt.Color;
-
 import java.awt.Graphics;
-
 import Game.ClickListener;
 import Game.Handler;
 import Game.UIImageButton;
@@ -24,7 +21,7 @@ public class MenuState extends State{
 			@Override
 			public void onClick() {
 				handler.getMouseManager().setUIManager(null);
-				State.setState(handler.getGame().gameState);
+				State.setState(handler.getGame().mGameState);
 			}
 			}));
 	}

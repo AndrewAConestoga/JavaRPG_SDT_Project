@@ -2,10 +2,11 @@ package Assets;
 
 import Game.Handler;
 
-import Game.KeyManager;
-import Assets.Tile;
-
-public abstract class Creature extends Entity{
+/**
+ * creature class of an entity that can move up, down, left or right with a health and speed
+ * @author fuelvin
+ */
+public abstract class Creature extends Entity {
 	
 	public static final int DEFAULT_HEALTH = 10;
 	public static final float DEFAULT_SPEED = 4.0f;
@@ -14,12 +15,21 @@ public abstract class Creature extends Entity{
 	public static final int PLAYER_WIDTH = 48;
 	public static final int PLAYER_HEIGHT = 80;
 
-	protected int health;
-	protected float speed;
+	public int health;
+	public float speed;
 	public static float xMove, yMove;
 	public static float xPosition, yPosition;
 	public static boolean collided = false;
 	
+	/**
+	 * creates a new instance of Creature
+	 * @author fuelvin
+	 * @param handler Handler object that will be used to manipulate the creature
+	 * @param x top left x position of where to draw creature on screen
+	 * @param y top left y position of where to draw creature on screen
+	 * @param width width of creature in pixels on screen
+	 * @param height height of creature in pixels on screen
+	 */
 	public Creature(Handler handler, float x, float y, int width, int height) {
 		super(handler, x, y, width, height);
 		health = DEFAULT_HEALTH;
@@ -29,6 +39,10 @@ public abstract class Creature extends Entity{
 		
 	}
 	
+	/**
+	 * moves creature in both ots x and y positions with its x and y speed 
+	 * @author fuelvin
+	 */
 	public void move() {
 		if(xMove != 0 && !checkEntityCollisions(xMove, 0f)) {
 			moveX();
@@ -38,99 +52,111 @@ public abstract class Creature extends Entity{
 		}
 	}
 	
+	/**
+	 * moves the creature in the x position relative to its x speed and handles collisions
+	 * @author fuelvin
+	 */
 	public void moveX() {
 		if(xMove > 0) {
 			collided = false;
-			int tx = (int) (x + xMove + bounds.x + bounds.width) / Tile.TILEWIDTH;
-			if(!collisionWithTile(tx, (int) (y + bounds.y) / Tile.TILEHEIGHT) && !collisionWithTile(tx, (int) (y + bounds.y + bounds.height) / Tile.TILEHEIGHT)){
-				x += xMove;
+			int tx = (int) (this.mX + xMove + this.mBounds.x + this.mBounds.width) / Tile.TILEWIDTH;
+			if(!collisionWithTile(tx, (int) (this.mY + this.mBounds.y) / Tile.TILEHEIGHT) && !collisionWithTile(tx, (int) (this.mY + this.mBounds.y + this.mBounds.height) / Tile.TILEHEIGHT)){
+				this.mX += xMove;
 				xPosition += xMove;
 				//System.out.println("x added to xMove:" + x + " xPosition=" + xPosition);
 			} else {
-				x = tx * Tile.TILEWIDTH + bounds.x - bounds.width - 1;
+				this.mX = tx * Tile.TILEWIDTH + this.mBounds.x - this.mBounds.width - 1;
 			}
 		} else if(xMove < 0) {	
 			collided = false;
-			int tx = (int) (x + xMove + bounds.x) / Tile.TILEWIDTH;
-			if(!collisionWithTile(tx, (int) (y + bounds.y) / Tile.TILEHEIGHT) && !collisionWithTile(tx, (int) (y + bounds.y + bounds.height) / Tile.TILEHEIGHT)){
-				x += xMove;
+			int tx = (int) (this.mX + xMove + this.mBounds.x) / Tile.TILEWIDTH;
+			if(!collisionWithTile(tx, (int) (this.mY + this.mBounds.y) / Tile.TILEHEIGHT) && !collisionWithTile(tx, (int) (this.mY + this.mBounds.y + this.mBounds.height) / Tile.TILEHEIGHT)){
+				this.mX += xMove;
 				xPosition += xMove;
 				//System.out.println("x added to xMove:" + x + " xPosition=" + xPosition);
 			} else {
-				x = tx * Tile.TILEWIDTH + Tile.TILEWIDTH - bounds.x;
+				this.mX = tx * Tile.TILEWIDTH + Tile.TILEWIDTH - this.mBounds.x;
 			}
 		}
 	}
 	
+	/**
+	 * moves the creature in the y position relative to its y speed and handles collisions
+	 * @author fuelvin
+	 */
 	public void moveY() {
 		if(yMove < 0) {
 			collided = false;
-			int ty = (int) (y + yMove + bounds.y) / Tile.TILEHEIGHT;
-			if(!collisionWithTile((int) (x + bounds.x) / Tile.TILEWIDTH, ty) && !collisionWithTile((int) (x + bounds.x + bounds.width) / Tile.TILEWIDTH, ty)) {
-				y += yMove;
+			int ty = (int) (this.mY + yMove + this.mBounds.y) / Tile.TILEHEIGHT;
+			if(!collisionWithTile((int) (this.mX + this.mBounds.x) / Tile.TILEWIDTH, ty) && !collisionWithTile((int) (this.mX + this.mBounds.x + this.mBounds.width) / Tile.TILEWIDTH, ty)) {
+				this.mY += yMove;
 				yPosition += yMove;
 				//System.out.println("y added to yMove:" + y + " yPosition=" + yPosition);
 			} else {
 				collided = true;
-				y = ty * Tile.TILEHEIGHT + Tile.TILEHEIGHT - bounds.y;
+				this.mY = ty * Tile.TILEHEIGHT + Tile.TILEHEIGHT - this.mBounds.y;
 			}
 		} else if(yMove > 0) {
 			collided = false;
-			int ty = (int) (y + yMove + bounds.y + bounds.height) / Tile.TILEHEIGHT;
-			if(!collisionWithTile((int) (x + bounds.x) / Tile.TILEWIDTH, ty) && !collisionWithTile((int) (x + bounds.x + bounds.width) / Tile.TILEWIDTH, ty)) {
-				y += yMove;
+			int ty = (int) (this.mY + yMove + this.mBounds.y + this.mBounds.height) / Tile.TILEHEIGHT;
+			if(!collisionWithTile((int) (this.mX + this.mBounds.x) / Tile.TILEWIDTH, ty) && !collisionWithTile((int) (this.mX + this.mBounds.x + this.mBounds.width) / Tile.TILEWIDTH, ty)) {
+				this.mY += yMove;
 				yPosition += yMove;
 				//System.out.println("y added to yMove:" + y + " yPosition=" + yPosition);
 			} else {
-				y = ty * Tile.TILEHEIGHT - bounds.y - bounds.height - 1;
+				this.mY = ty * Tile.TILEHEIGHT - this.mBounds.y - this.mBounds.height - 1;
 				collided = true;
 			}
 			
 		}
 	}
 	
+	/**
+	 * checks if creature has collided with tile
+	 * @author fuelvin
+	 * @param x x position of tile in world being checkout for collision
+	 * @param y y position of tile in world being checkout for collision
+	 */
 	protected boolean collisionWithTile(int x, int y) {
-		if(handler.getWorld().getTile(x, y).isSolid()) {
+		if(this.mHandler.getWorld().getTile(x, y).isSolid()) {
 			collided = true;
 		}
-		return handler.getWorld().getTile(x, y).isSolid();
+		return this.mHandler.getWorld().getTile(x, y).isSolid();
 	}
 	
-	
-//	public float getxMove() {
-//		return xMove;
-//	}
-//
-//	public void setxMove(float xMove) {
-//		this.xMove = xMove;
-//	}
-//
-//	public float getyMove() {
-//		return yMove;
-//	}
-//
-//	public void setyMove(float yMove) {
-//		this.yMove = yMove;
-//	}
-
+	/**
+	 * getter for creatures health
+	 * @author fuelvin
+	 * @return creatures health as an integer
+	 */
 	public int getHealth() {
 		return health;
 	}
 
+	/**
+	 * setter for creatures health
+	 * @author fuelvin
+	 * @param health sets creatures health to value of this parameter
+	 */
 	public void setHealth(int health) {
 		this.health = health;
 	}
 
+	/**
+	 * getter for creatures speed
+	 * @author fuelvin
+	 * @return creatures speed as an float
+	 */
 	public float getSpeed() {
 		return speed;
 	}
 
+	/**
+	 * setter for creatures speed
+	 * @author fuelvin
+	 * @param speed sets creatures speed to value of this parameter
+	 */
 	public void setSpeed(float speed) {
 		this.speed = speed;
 	}
-
-
-
-	
-	
 }

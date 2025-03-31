@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import Game.Game;
 import Game.Handler;
 import States.BattleState;
-import States.GameState;
 
 public class Monster implements MonsterInterface{
 	
@@ -25,7 +24,7 @@ public class Monster implements MonsterInterface{
 	private int xp;
 	private int attack;
 	private Handler handler;
-	private static String name;
+	private String name;
 	
 	private Text defeatText;
 	private Text text;
@@ -83,6 +82,12 @@ public class Monster implements MonsterInterface{
 	private int maxAmount = 15;
 	private boolean f;
 	private boolean f2;
+	
+	/**
+	 * draws self on the game screen
+	 * @author fuelvin
+	 * @param g graphics to draw to
+	 */
 	public void render(Graphics g) {
 		Graphics2D g2d = (Graphics2D)g;
 		Composite ogComposite = g2d.getComposite();
@@ -96,7 +101,7 @@ public class Monster implements MonsterInterface{
 			if(amount < maxAmount) {
 				if(time2 > (50 / maxAmount)) {
 					time2 = 0;
-					coinAndXP.add(new CoinAndXP(x, y));
+					coinAndXP.add(new CoinAndXP());
 					amount++;
 				}
 			}
@@ -109,7 +114,7 @@ public class Monster implements MonsterInterface{
 			}
 		} else if(deathState == 3) {
 			if(!f) {
-				Game.player.coins += money;
+				Game.sPlayer.coins += money;
 				f = true;
 			}
 			rewardsText.render(g);
@@ -117,7 +122,7 @@ public class Monster implements MonsterInterface{
 			//BattleState.switchGameStates = true;
 		} else if(deathState == 4) {
 			if(!f2) {
-				Game.player.xp += xp;
+				Game.sPlayer.xp += xp;
 				f2 = true;
 			}
 			rewardsText2.render(g);

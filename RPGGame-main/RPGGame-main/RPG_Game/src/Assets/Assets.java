@@ -5,6 +5,10 @@ import java.awt.image.BufferedImage;
 import ImageStuff.ImageLoader;
 import ImageStuff.SpriteSheet;
 
+/**
+ * class that holds all the assets to be used in game
+ * @author fuelvin
+ */
 public class Assets {
 
 	private static final int width = 16; //Size of each tile in sprite sheet
@@ -21,6 +25,10 @@ public class Assets {
 	public static BufferedImage[] buttonStart, trees, attackButton, escapeButton, alphabet, numbers, slashAnimation, attackBar, damageNumbers,
 	miniAlphabet, statsButton, redNumbers, arrow, moneyNumbers, xpNumbers, monsters;
 	
+	/**
+	 * initalizes all the game sprites to be used during runtime
+	 * @author fuelvin
+	 */
 	public static void init() {
 		SpriteSheet sheet = new SpriteSheet(ImageLoader.loadImage("/textures/Tiles.png"));
 		SpriteSheet playerSheet = new SpriteSheet(ImageLoader.loadImage("/textures/Player.png"));
@@ -173,13 +181,5 @@ public class Assets {
 		bar = barSheet.crop(105, 165, 150, 13);
 		coin = barSheet.crop(204, 98, 8, 8);
 		xp = barSheet.crop(212, 98, 10, 8);
-		
-		
-		
 	}
-	
-	
-	
-	
-	
 }

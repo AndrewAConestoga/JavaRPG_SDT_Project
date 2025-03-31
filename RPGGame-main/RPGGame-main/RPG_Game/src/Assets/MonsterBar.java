@@ -41,6 +41,11 @@ public class MonsterBar {
 	
 	
 	private boolean f3;
+	
+	/**
+   	 * called every frame, determines how many monster bars should be displayed on the screen 
+   	 * @author fuelvin
+   	 */
 	public void tick() {
 		if(timer > randomTimer) {
 			if(!f3) {
@@ -58,6 +63,12 @@ public class MonsterBar {
 	private boolean pressed;
 	private boolean draw;
 	private float opacity;
+	
+	/**
+	 * draws self on the game screen
+	 * @author fuelvin
+	 * @param g graphics to draw to
+	 */
 	public void render(Graphics g) {
 		//System.out.println(touchingBar);
 		if(!destroyed) {
@@ -130,6 +141,11 @@ public class MonsterBar {
 
 	}
 	
+	/**
+   	 * check if the monster bar as been pressed by the player
+   	 * @author fuelvin
+   	 * @param g graphics screen to display the click animation on
+   	 */
 	private void checkPressed(Graphics g) {
 		
 		Graphics2D g2d = (Graphics2D) g;
@@ -169,6 +185,11 @@ public class MonsterBar {
 	}
 	}
 	
+	/**
+   	 * draws a square on the screen
+   	 * @author fuelvin
+   	 * @param g graphics screen to draw square on
+   	 */
 	private void drawSquare(Graphics g) {
 		Graphics2D g2 = (Graphics2D) g;
 		
@@ -183,6 +204,11 @@ public class MonsterBar {
 		g2.setStroke(oldS);
 	}
 	
+	/**
+   	 * getter for id
+   	 * @author fuelvin
+   	 * @return id of this MonsterBar
+   	 */
 	public int getId() {
 		return this.id;
 	}

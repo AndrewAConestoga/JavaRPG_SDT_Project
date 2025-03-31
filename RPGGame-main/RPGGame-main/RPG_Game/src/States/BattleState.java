@@ -3,7 +3,6 @@ package States;
 import java.awt.Color;
 
 import java.awt.Graphics;
-import java.io.Console;
 import java.util.ArrayList;
 
 import Assets.Arrow;
@@ -19,7 +18,6 @@ import Decorator.StrongMonster;
 import Game.Handler;
 import Game.UIImageButton;
 import Game.UIManager;
-import Game.UIObject;
 import Game.ClickListener;
 import Game.Game;
 
@@ -124,14 +122,14 @@ public class BattleState extends State{
 	}
 	
 	private void switchToGameState() {
-		if (Game.player.health > 0) {
+		if (Game.sPlayer.health > 0) {
 			handler.savePlayer();
 		}
 		encounterFlag = true;
 		handler.getMouseManager().setUIManager(null);
 		Transition.canStart = false;
-		Game.flag2 = false;
-		State.setState(handler.getGame().gameState);
+		Game.sFlag2 = false;
+		State.setState(handler.getGame().mGameState);
 		BattleState.switchGameStates = true;
 		destroy();
 	}

@@ -6,66 +6,66 @@ import Memento.PlayerOriginator;
 
 public class Handler {
 
-	private Game game;
-	private World world;
-	private PlayerOriginator pOriginator = new PlayerOriginator();
-	private PlayerCaretaker pCaretaker = new PlayerCaretaker();
+	private Game mGame;
+	private World mWorld;
+	private PlayerOriginator mPlayerOriginator = new PlayerOriginator();
+	private PlayerCaretaker mPlayerCaretaker = new PlayerCaretaker();
 	
 	public Handler(Game game) {
-		this.game = game;
+		this.mGame = game;
 	}
 	
 	public GameCamera getGameCamera() {
-		return game.getGameCamera();
+		return this.mGame.getGameCamera();
 	}
 	
 	public KeyManager getKeymanager() {
-		return game.getKeyManager();
+		return this.mGame.getKeyManager();
 	}
 	
 	public MouseManager getMouseManager() {
-		return game.getMouseManager();
+		return this.mGame.getMouseManager();
 	}
 	
 	public int getWidth() {
-		return game.getWidth();
+		return this.mGame.getWidth();
 	}
 	
 	public int getHeight() {
-		return game.getHeight();
+		return this.mGame.getHeight();
 	}
 
 	public Game getGame() {
-		return game;
+		return this.mGame;
 	}
 
 	public void setGame(Game game) {
-		this.game = game;
+		this.mGame = game;
 	}
 
 	public World getWorld() {
-		return world;
+		return this.mWorld;
 	}
 
 	public void setWorld(World world) {
-		this.world = world;
+		this.mWorld = world;
 	}
 	
 	public PlayerOriginator getPlayerOriginator() {
-		return pOriginator;
+		return this.mPlayerOriginator;
 	}
 	
 	public PlayerCaretaker getPlayerCaretaker() {
-		return pCaretaker;
+		return this.mPlayerCaretaker;
 	}
 	
 	public void savePlayer() {
-		pOriginator.set(Game.player);
-		pCaretaker.addMemento(pOriginator.storeInMemento());
+		this.mPlayerOriginator.set(Game.sPlayer);
+		this.mPlayerCaretaker.addMemento(this.mPlayerOriginator.storeInMemento());
 	}
 	
 	public Player loadPlayer() {
-		return pCaretaker.getLatestMemento().getSavedPlayer();
+		return this.mPlayerCaretaker.getLatestMemento().getSavedPlayer();
 	}
 	
 }
