@@ -1,8 +1,9 @@
 package Game;
 
 import java.awt.Graphics;
+import java.util.Iterator;
 
-
+import Assets.Entity;
 import Assets.EntityManager;
 import Assets.Tree;
 import Assets.Tile;
@@ -80,8 +81,13 @@ public class World {
 				getTile(j, i).render(g, (int) (j * Tile.TILEWIDTH - handler.getGameCamera().getxOffset()), (int) (i * Tile.TILEHEIGHT - handler.getGameCamera().getyOffset()));
 			}
 		}
-		
-		entityManager.render(g);
+
+		// Display entities
+		Iterator<Entity> entities = entityManager.getEntitiesIterator();
+		while (entities.hasNext()) {
+			entities.next().render(g);
+		}
+		entityManager.sort();
 	}
 	
 	/**

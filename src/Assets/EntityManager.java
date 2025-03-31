@@ -3,6 +3,7 @@ package Assets;
 import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.Iterator;
 
 import Game.Game;
 import Game.Handler;
@@ -63,10 +64,7 @@ public class EntityManager {
 	 * @author fuelvin
 	 * @param g graphics to draw to
 	 */
-	public void render(Graphics g) {
-		for(Entity e : entities) {
-			e.render(g);
-		}
+	public void sort() {
 		entities.sort(renderSorter);
 	}
 	
@@ -132,8 +130,8 @@ public class EntityManager {
 	 * @author fuelvin
 	 * @return all the entities in this manager as a list
 	 */
-	public ArrayList<Entity> getEntities() {
-		return entities;
+	public Iterator<Entity> getEntitiesIterator() {
+		return entities.iterator();
 	}
 
 	/**

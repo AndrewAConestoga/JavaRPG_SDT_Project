@@ -2,6 +2,7 @@ package Assets;
 
 import java.awt.Graphics;
 import java.awt.Rectangle;
+import java.util.Iterator;
 
 import Game.Handler;
 
@@ -57,11 +58,13 @@ public abstract class Entity {
 	 * @return true if entity has collided with an object in the world, false if it has not
 	 */
 	public boolean checkEntityCollisions(float xOffset, float yOffset) {
-		for(Entity e : this.mHandler.getWorld().getEntityManager().getEntities()) {
-			if(e.equals(this)) {
+		Iterator<Entity> entities = this.mHandler.getWorld().getEntityManager().getEntitiesIterator();
+		while (entities.hasNext()) {
+			Entity other = (Entity)entities.next();
+			if (this.equals(other)) {
 				continue;
 			}
-			if(e.getCollisionBounds(0f, 0f).intersects(getCollisionBounds(xOffset, yOffset))) {
+			if (other.getCollisionBounds(0f, 0f).intersects(getCollisionBounds(xOffset, yOffset))) {
 				Creature.collided = true;
 				return true;
 			}
