@@ -121,7 +121,7 @@ public class MonsterBar {
 				redDamageText.setY(640 - i / 2);
 				if(!f) {
 					f = true;
-					Game.player.health -= monster.getAttack();
+					Game.sPlayer.health -= monster.getAttack();
 				}
 			} else {
 				f = false;
