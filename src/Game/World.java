@@ -83,7 +83,7 @@ public class World {
 		}
 
 		// Display entities
-		Iterator<Entity> entities = entityManager.getEntitiesIterator();
+		Iterator<Entity> entities = entityManager.getIterator();
 		while (entities.hasNext()) {
 			entities.next().render(g);
 		}

@@ -58,7 +58,7 @@ public abstract class Entity {
 	 * @return true if entity has collided with an object in the world, false if it has not
 	 */
 	public boolean checkEntityCollisions(float xOffset, float yOffset) {
-		Iterator<Entity> entities = this.mHandler.getWorld().getEntityManager().getEntitiesIterator();
+		Iterator<Entity> entities = this.mHandler.getWorld().getEntityManager().getIterator();
 		while (entities.hasNext()) {
 			Entity other = (Entity)entities.next();
 			if (this.equals(other)) {
