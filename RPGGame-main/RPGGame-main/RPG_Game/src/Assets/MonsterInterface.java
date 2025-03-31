@@ -4,40 +4,40 @@ import java.awt.Graphics;
 
 /**
  * interface for monsters to implement 
- * @author fuelvin
+ * @author Dylan
  */
 public interface MonsterInterface {
 	
 	/**
    	 * called every frame
-   	 * @author fuelvin
+   	 * @author Dylan
    	 */
     void tick();
     
     /**
 	 * draws self on the game screen
-	 * @author fuelvin
+	 * @author Dylan
 	 * @param g graphics to draw to
 	 */
     void render(Graphics g);
     
     /**
    	 * getter for monster health
-   	 * @author fuelvin
+   	 * @author Dylan
    	 * @return health of monster
    	 */
     int getHealth();
     
     /**
    	 * setter for monster health
-   	 * @author fuelvin
+   	 * @author Dylan
    	 * @param new health of monster
    	 */
     void setHealth(int health);
     
     /**
    	 * setter for monster base health
-   	 * @author fuelvin
+   	 * @author Dylan
    	 * @param new base health of monster
    	 */
     void setBaseHealth(int health);
