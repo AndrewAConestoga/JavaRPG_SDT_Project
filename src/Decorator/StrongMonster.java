@@ -50,7 +50,7 @@ public class StrongMonster extends MonsterDecorator {
      */
     @Override
     public int getAttack() {
-        return monster.getAttack();
+        return monster.getAttack() + strengthBoost;
     }
 
     /**

@@ -231,4 +231,16 @@ public class Player extends Creature {
 	public void setDir(int dir) {
 		this.mDir = dir;
 	}
+	
+	/**
+	 * levels up the player increasing their hp and reseting their xp to 0
+	 * @author fuelvin
+	 * @param dir sets the direction for the player to be facing in
+	 */
+	public void levelUp() {
+		this.level++;
+		this.xp = 0;
+		this.baseHealth = this.baseHealth + (this.level*10);
+		this.health=this.baseHealth;
+	}
 }
