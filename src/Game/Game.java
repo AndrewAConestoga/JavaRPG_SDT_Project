@@ -76,6 +76,9 @@ public class Game {
 		sPlayer = new Player(0, 0, this.mHandler);
 		this.mGameCamera = new GameCamera(this.mHandler, 0, 0);
 		
+		// save initial player state
+		this.mHandler.savePlayer();
+		
 		// Create states
 		this.mGameState = new GameState(this.mHandler);
 		this.mMenuState = new MenuState(this.mHandler);

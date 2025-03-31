@@ -22,9 +22,6 @@ public class Handler {
 	 */
 	public Handler(Game game) {
 		this.mGame = game;
-		
-		// saves first state of player
-		this.savePlayer();
 	}
 	
 	/**
