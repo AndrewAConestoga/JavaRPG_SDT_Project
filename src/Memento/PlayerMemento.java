@@ -16,7 +16,7 @@ public class PlayerMemento {
 	 * @param player Player to save state of in the memento
 	 */
 	public PlayerMemento(Player player) { 
-		this.player = player; 
+		this.player = new Player(player); 
 	}
 	
 	/**
