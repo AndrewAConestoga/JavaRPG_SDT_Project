@@ -5,6 +5,12 @@ import java.awt.Graphics;
 import java.util.Timer;
 import java.util.TimerTask;
 
+
+/**
+ * transition class used to delay transition in between game states
+ * @author fuelvin
+ * @param g graphics to draw to
+ */
 public class Transition {
 	private int i = 0;
 	private int milliSecondsPassed;
@@ -12,7 +18,10 @@ public class Transition {
 	private TimerTask task;
 	public static boolean canStart;
 	
-	
+	/**
+	 * creates a new instance of a Transition object
+	 * @author fuelvin
+	 */
 	public Transition() {
 		canStart = false;
 		milliSecondsPassed = 0;
@@ -26,6 +35,11 @@ public class Transition {
 		timer.scheduleAtFixedRate(task, 1, 1);
 	}
 
+	/**
+	 * draws self on the game screen
+	 * @author fuelvin
+	 * @param g graphics to draw to
+	 */
 	public void render(Graphics g) {
 		//System.out.println(milliSecondsPassed);
 			if(milliSecondsPassed > 400) {

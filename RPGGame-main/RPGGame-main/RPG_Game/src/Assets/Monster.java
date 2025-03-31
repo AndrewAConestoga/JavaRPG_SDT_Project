@@ -80,6 +80,12 @@ public class Monster implements MonsterInterface{
 	private int maxAmount = 15;
 	private boolean f;
 	private boolean f2;
+	
+	/**
+	 * draws self on the game screen
+	 * @author fuelvin
+	 * @param g graphics to draw to
+	 */
 	public void render(Graphics g) {
 		Graphics2D g2d = (Graphics2D)g;
 		Composite ogComposite = g2d.getComposite();
@@ -93,7 +99,7 @@ public class Monster implements MonsterInterface{
 			if(amount < maxAmount) {
 				if(time2 > (50 / maxAmount)) {
 					time2 = 0;
-					coinAndXP.add(new CoinAndXP(x, y));
+					coinAndXP.add(new CoinAndXP());
 					amount++;
 				}
 			}

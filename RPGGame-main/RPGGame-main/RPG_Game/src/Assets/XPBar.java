@@ -9,25 +9,49 @@ import Game.Game;
 import Game.Handler;
 import States.GameState;
 
+/**
+ * xp bar asset to be drawn to the game screen to display the players experience
+ * @author fuelvin
+ */
 public class XPBar {
 	
 	private int x;
 	private int y;
 	private Text healthText;
 	
+	/**
+	 * draws self on the game screen
+	 * @author fuelvin
+	 * @param x top left x position of where to draw XPBar to
+	 * @param y top left y position of where to draw XPBar to
+	 */
 	public XPBar(int x, int y) {
 		this.x = x;
 		this.y = y;
 		healthText = new Text(Game.sPlayer.health + "/" + Game.sPlayer.baseHealth, x + 152, y + 80, 4, 1);
 	}
 	
+	/**
+	 * called once every frame
+	 * @author fuelvin
+	 */
 	public void tick() {
 	}
 	
+	/**
+	 * draws self on the game screen
+	 * @author fuelvin
+	 * @param g graphics to draw to
+	 */
 	public void render(Graphics g) {
 		drawXPBar(g);
 	}
 	
+	/**
+	 * draws the amount of xp the player has into the xp bar on screen
+	 * @author fuelvin
+	 * @param g graphics to draw to
+	 */
 	private void drawXPBar(Graphics g) {
 		Graphics2D g2d = (Graphics2D) g;
 		int cc = 90;

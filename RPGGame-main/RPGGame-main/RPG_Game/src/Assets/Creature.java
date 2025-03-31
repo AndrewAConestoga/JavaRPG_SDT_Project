@@ -2,6 +2,10 @@ package Assets;
 
 import Game.Handler;
 
+/**
+ * creature class of an entity that can move up, down, left or right with a health and speed
+ * @author fuelvin
+ */
 public abstract class Creature extends Entity {
 	
 	public static final int DEFAULT_HEALTH = 10;
@@ -17,6 +21,15 @@ public abstract class Creature extends Entity {
 	public static float xPosition, yPosition;
 	public static boolean collided = false;
 	
+	/**
+	 * creates a new instance of Creature
+	 * @author fuelvin
+	 * @param handler Handler object that will be used to manipulate the creature
+	 * @param x top left x position of where to draw creature on screen
+	 * @param y top left y position of where to draw creature on screen
+	 * @param width width of creature in pixels on screen
+	 * @param height height of creature in pixels on screen
+	 */
 	public Creature(Handler handler, float x, float y, int width, int height) {
 		super(handler, x, y, width, height);
 		health = DEFAULT_HEALTH;
@@ -26,6 +39,10 @@ public abstract class Creature extends Entity {
 		
 	}
 	
+	/**
+	 * moves creature in both ots x and y positions with its x and y speed 
+	 * @author fuelvin
+	 */
 	public void move() {
 		if(xMove != 0 && !checkEntityCollisions(xMove, 0f)) {
 			moveX();
@@ -35,6 +52,10 @@ public abstract class Creature extends Entity {
 		}
 	}
 	
+	/**
+	 * moves the creature in the x position relative to its x speed and handles collisions
+	 * @author fuelvin
+	 */
 	public void moveX() {
 		if(xMove > 0) {
 			collided = false;
@@ -59,6 +80,10 @@ public abstract class Creature extends Entity {
 		}
 	}
 	
+	/**
+	 * moves the creature in the y position relative to its y speed and handles collisions
+	 * @author fuelvin
+	 */
 	public void moveY() {
 		if(yMove < 0) {
 			collided = false;
@@ -86,6 +111,12 @@ public abstract class Creature extends Entity {
 		}
 	}
 	
+	/**
+	 * checks if creature has collided with tile
+	 * @author fuelvin
+	 * @param x x position of tile in world being checkout for collision
+	 * @param y y position of tile in world being checkout for collision
+	 */
 	protected boolean collisionWithTile(int x, int y) {
 		if(this.mHandler.getWorld().getTile(x, y).isSolid()) {
 			collided = true;
@@ -93,18 +124,38 @@ public abstract class Creature extends Entity {
 		return this.mHandler.getWorld().getTile(x, y).isSolid();
 	}
 	
+	/**
+	 * getter for creatures health
+	 * @author fuelvin
+	 * @return creatures health as an integer
+	 */
 	public int getHealth() {
 		return health;
 	}
 
+	/**
+	 * setter for creatures health
+	 * @author fuelvin
+	 * @param health sets creatures health to value of this parameter
+	 */
 	public void setHealth(int health) {
 		this.health = health;
 	}
 
+	/**
+	 * getter for creatures speed
+	 * @author fuelvin
+	 * @return creatures speed as an float
+	 */
 	public float getSpeed() {
 		return speed;
 	}
 
+	/**
+	 * setter for creatures speed
+	 * @author fuelvin
+	 * @param speed sets creatures speed to value of this parameter
+	 */
 	public void setSpeed(float speed) {
 		this.speed = speed;
 	}

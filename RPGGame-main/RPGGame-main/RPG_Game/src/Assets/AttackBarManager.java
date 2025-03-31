@@ -12,6 +12,11 @@ import Game.Handler;
 import ImageStuff.Animation;
 import States.BattleState;
 
+/**
+ * attack bar manager used when the player is being attacked by an enemy
+ * controls the inputs, speed, and display for the attack bar in game
+ * @author fuelvin
+ */
 public class AttackBarManager {
 	private int y;
 	public static float xVel;
@@ -40,7 +45,11 @@ public class AttackBarManager {
 	
 	TimerTask task;
 	
-	
+	/**
+	 * creates a new instance of an AttackBarManager 
+	 * @author fuelvin
+	 * @param handler handler that will control and manipulate this object
+	 */
 	public AttackBarManager(Handler handler) {
 		timer = new Timer();
 		task = new TimerTask() {
@@ -67,6 +76,10 @@ public class AttackBarManager {
 		timer.scheduleAtFixedRate(task, 1, 1);
 	}
 
+	/**
+	 * called once a frame, used to animate enemy attacks and the attack bar items
+	 * @author fuelvin
+	 */
 	public void tick() {	
 		if(slash && slashAnimation.getIndex() < 8) {
 			slashAnimation.tick();
@@ -89,6 +102,11 @@ public class AttackBarManager {
 	private boolean slashFlag;
 	public static boolean critical;
 	
+	/**
+	 * draws self on the game screen
+	 * @author fuelvin
+	 * @param g graphics to draw to
+	 */
 	public void render(Graphics g) {
 		if(Monster.deathState < 2) {
 			g.drawImage(Assets.attackBar[0], (int)(xVel) - 4, y, 4 * 2, 34 * 2, null);
@@ -106,11 +124,21 @@ public class AttackBarManager {
 		
 	}
 	
+	/**
+	 * getter for the damage member variable
+	 * @author fuelvin
+	 * @return amount of damage dealt
+	 */
 	public int getDamage() {
 		return damage;
 	}
 	
 	private float opacity = 1;
+	
+	/**
+	 * called once a frame, used to animate enemy attacks and the attack bar items
+	 * @author fuelvin
+	 */
 	private void playerAttack(Graphics g) {
 		if(Monster.deathState < 2) {
 			turn.render(g);
@@ -147,6 +175,11 @@ public class AttackBarManager {
 			
 	}
 	
+	/**
+	 * called when player is attacking enemy and presses space bar, checks to see if the player gets a critical
+	 * hit and calculates damage dealt
+	 * @author fuelvin
+	 */
 	private void initializeOnPress() {
 		critical = false;
 		attackBar.setIndex(0);
@@ -164,6 +197,10 @@ public class AttackBarManager {
 		milliSecondsPassed = 0;
 	}
 	
+	/**
+	 * called when players turn has ended, resets bar and attack variables
+	 * @author fuelvin
+	 */
 	private void initializeWhenPlayerTurnEnd() {
 		f = false;
 		f2 = false;
@@ -185,6 +222,11 @@ public class AttackBarManager {
 	private boolean renderRedText;
 	public static boolean canCheckId;
 	
+	/**
+	 * displays enemy attacking player and changes to player turn after animation
+	 * @author fuelvin
+	 * @param g graphics screen to display the animation on
+	 */
 	private void enemyAttack(Graphics g) {
 		if(Monster.deathState < 2) {
 			turn2.render(g);
@@ -219,7 +261,11 @@ public class AttackBarManager {
 	
 	
 	
-	
+	/**
+	 * called when player presses spacebar when blocking enemy attack, detects
+	 * if they missed the block and take damage or successfully block
+	 * @author fuelvin
+	 */
 	private void initializeOnPress2() {
 		f = true;
 		opacity = 1;
@@ -244,6 +290,10 @@ public class AttackBarManager {
 		}
 	}
 	
+	/**
+	 * resets the attack bar after it has been touched/clicked
+	 * @author fuelvin
+	 */
 	private void resetAfterTouchBar() {
 		canCheckId = false;
 		renderRedText = false;
@@ -254,6 +304,11 @@ public class AttackBarManager {
 		id = 0;
 	}
 	
+	/**
+	 * displays red text on the screen for showing damage dealt
+	 * @author fuelvin
+	 * @param g graphics screen to display text on
+	 */
 	private void renderRedText(Graphics g) {
 		Graphics2D g2d = (Graphics2D) g;
 		g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, opacity));
@@ -264,6 +319,10 @@ public class AttackBarManager {
 		redDamageText.setY(635 - i / 2);
 	}
 	
+	/**
+	 * switches the current turn in the battle state to the players turn 
+	 * @author fuelvin
+	 */
 	private void switchToPlayerTurn() {
 		milliSecondsPassed = 0;
 		BattleState.playerAttack = true;
@@ -274,11 +333,19 @@ public class AttackBarManager {
 		f2 = false;
 	}
 	
+	/**
+	 * called when this object is deconstructed and no longer in use
+	 * @author fuelvin
+	 */
 	public void destroy() {
 		timer.cancel();
 		task.cancel();
 	}
 	
+	/**
+	 * checks for the players input during their turn or when blocking
+	 * @author fuelvin
+	 */
 	private void move() {
 		if(canPress && (handler.getKeymanager().q || handler.getKeymanager().space)) {
 			pressed = true;

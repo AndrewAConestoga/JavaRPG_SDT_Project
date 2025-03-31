@@ -5,6 +5,10 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
 
+/**
+ * Class that creates the coin and xp shooting out animation after defeating a monster
+ * @author fuelvin
+ */
 public class CoinAndXP {
 	
 	private int x;
@@ -17,7 +21,11 @@ public class CoinAndXP {
 	
 	private float randSpeed;
 
-	public CoinAndXP(int x, int y) {
+	/**
+	 * creates a new instance of CoinAndXp
+	 * @author fuelvin
+	 */
+	public CoinAndXP() {
 		this.x = 500;
 		this.y = 200;
 		type = (int)Math.round(Math.random());
@@ -31,6 +39,10 @@ public class CoinAndXP {
 		yVel = 10;
 	}
 	
+	/**
+	 * called once per frame, plays random drop animation after defeating an enemy
+	 * @author fuelvin
+	 */
 	public void tick() {
 		x += xVel;
 		y -= yVel;
@@ -42,6 +54,11 @@ public class CoinAndXP {
 		yVel -= 0.4f;
 	}
 	
+	/**
+	 * draws self on the game screen
+	 * @author fuelvin
+	 * @param g graphics to draw to
+	 */
 	public void render(Graphics g) {
 		Graphics2D g2d = (Graphics2D) g;
 		if(opacity >= 0.017) {

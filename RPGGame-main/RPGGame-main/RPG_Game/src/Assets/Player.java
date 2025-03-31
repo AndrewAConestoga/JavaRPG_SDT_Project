@@ -15,6 +15,10 @@ import Game.World;
 import ImageStuff.Animation;
 import States.BattleState;
 
+/**
+ * Player class that stores all the information about the player and is used to get draw and get input from the user
+ * @author fuelvin
+ */
 public class Player extends Creature {
 
 	private Animation animDown, animUp, animLeft, animRight;
@@ -41,6 +45,13 @@ public class Player extends Creature {
 	private PlayerInput inputShowHitboxes;
 	private PlayerInput inputRun;
 
+	/**
+	 * creates a new instance of Creature
+	 * @author fuelvin
+	 * @param x top left x position of where to draw player on screen
+	 * @param y top left y position of where to draw player on screen
+	 * @param handler Handler object that will be used to manipulate the player
+	 */
 	public Player(float x, float y, Handler handler) {
 		super(handler, x, y, Creature.PLAYER_WIDTH, Creature.PLAYER_HEIGHT);
 
@@ -68,10 +79,19 @@ public class Player extends Creature {
 
 	}
 	
+	/**
+	 * returns the string represention of player
+	 * @author fuelvin
+	 * @return string represention of player showing all its values in a csv file
+	 */
 	public String toString() {
 		return this.mDir + "," + xPosition + "," + yPosition + "," + health + "," + baseHealth + "," + level + "," + coins + "," + xp + "," + name + "," + flag + "," + flag2 + "," + flag3 + "," + a + "," + b;
 	}
 
+	/**
+	 * called once per frame
+	 * @author fuelvin
+	 */
 	@Override
 	public void tick() {
 		if (!Game.sFlag2) {
@@ -86,6 +106,10 @@ public class Player extends Creature {
 		this.mHandler.getGameCamera().centerOnEntity(this);
 	}
 
+	/**
+	 * checks for user input and executes according command
+	 * @author Andrew Abrantes
+	 */
 	private void getInput() {
 		xMove = 0;
 		yMove = 0;
@@ -123,6 +147,11 @@ public class Player extends Creature {
 
 	}
 
+	/**
+	 * draws self on the game screen
+	 * @author fuelvin
+	 * @param g graphics to draw to
+	 */
 	@Override
 	public void render(Graphics g) {
 		g.drawImage(getCurrentAnimationFrame(), (int) (this.mX - this.mHandler.getGameCamera().getxOffset()),
@@ -134,6 +163,11 @@ public class Player extends Creature {
 		}
 	}
 
+	/**
+	 * getter for current animation frame
+	 * @author fuelvin
+	 * @return the current frame of animation to be used by render to display on the screen
+	 */
 	private BufferedImage getCurrentAnimationFrame() {
 		// Check positional based items
 		if (xMove < 0) {
@@ -162,6 +196,10 @@ public class Player extends Creature {
 		}
 	}
 
+	/**
+	 * used to check if player should encounter an enemy when walking in tall grass
+	 * @author fuelvin
+	 */
 	private void checkEncounter() {
 		World w = this.mHandler.getWorld();
 		if ((w.getTile(w.getSpawnX() + ((int) Creature.xPosition) / 64,
@@ -184,6 +222,11 @@ public class Player extends Creature {
 		}
 	}
 
+	/**
+	 * setter for dir
+	 * @author fuelvin
+	 * @param dir sets the direction for the player to be facing in
+	 */
 	public void setDir(int dir) {
 		this.mDir = dir;
 	}
