@@ -45,7 +45,7 @@ public class Player extends Creature {
 	private PlayerInput inputRun;
 
 	/**
-	 * creates a new instance of Creature
+	 * creates a new instance of Player
 	 * @author fuelvin
 	 * @param x top left x position of where to draw player on screen
 	 * @param y top left y position of where to draw player on screen
@@ -78,6 +78,40 @@ public class Player extends Creature {
 		this.inputShowHitboxes = new PlayerInput(new PlayerShowHitboxesCommand(this));
 		this.inputRun = new PlayerInput(new PlayerRunCommand(this));
 
+	}
+	
+	/**
+	 * creates a new instance of Player with a given player
+	 * @author Andrew Abrantes
+	 * @param p player to copy values from
+	 */
+	public Player(Player p) {
+		
+		super(p.mHandler, p.getX(), p.getY(), Creature.PLAYER_WIDTH, Creature.PLAYER_HEIGHT);
+
+		// Collision setup
+		this.mBounds.x = 0;
+		this.mBounds.height = 35;
+		this.mBounds.y = PLAYER_HEIGHT - this.mBounds.height - 1;
+		this.mBounds.width = 43;
+		
+		this.health = p.health;
+		this.baseHealth = p.baseHealth;
+		this.level = p.level;
+		name = "Fuelvin";
+
+		animDown = new Animation(120, Asset.player_down);
+		animUp = new Animation(120, Asset.player_up);
+		animLeft = new Animation(120, Asset.player_left);
+		animRight = new Animation(120, Asset.player_right);
+		
+		this.inputUp = new PlayerInput(new PlayerMoveCommand(this, Direction.Up));
+		this.inputDown = new PlayerInput(new PlayerMoveCommand(this, Direction.Down));
+		this.inputLeft = new PlayerInput(new PlayerMoveCommand(this, Direction.Left));
+		this.inputRight = new PlayerInput(new PlayerMoveCommand(this, Direction.Right));
+		this.inputShowHitboxes = new PlayerInput(new PlayerShowHitboxesCommand(this));
+		this.inputRun = new PlayerInput(new PlayerRunCommand(this));
+		
 	}
 	
 	/**

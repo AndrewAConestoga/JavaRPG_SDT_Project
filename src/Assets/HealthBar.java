@@ -75,9 +75,10 @@ public class HealthBar {
 					Player checkpoint = handler.getPlayerCaretaker().getLatestMemento().getSavedPlayer();
 					
 					State.setState(handler.getGame().mGameState);
-					Game.sPlayer.health = checkpoint.baseHealth;
+					Game.sPlayer.health = checkpoint.health;
 					Game.sPlayer.coins = checkpoint.coins;
 					Game.sPlayer.xp = checkpoint.xp;
+					Game.sPlayer.level = checkpoint.level;
 					handler.getGameCamera().setxOffset(0);
 					handler.getGameCamera().setyOffset(0);
 					handler.getWorld().getEntityManager().getPlayer().setX(24 * Tile.TILEWIDTH + 10);

@@ -26,6 +26,7 @@ public class PlayerOriginator {
 	 * @return PlayerMemento holding the state of the player at the current moment
 	 */
 	public PlayerMemento storeInMemento() { 
+		
 	    return new PlayerMemento(player); 
 	}
 	   
