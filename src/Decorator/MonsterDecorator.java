@@ -2,6 +2,7 @@ package Decorator;
 
 import java.awt.Graphics;
 
+import Assets.Monster;
 import Assets.MonsterInterface;
 
 /**

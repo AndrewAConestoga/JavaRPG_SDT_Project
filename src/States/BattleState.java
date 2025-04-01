@@ -14,6 +14,7 @@ import Assets.Monster;
 import Assets.MonsterInterface;
 import Assets.Transition;
 import Decorator.HealthyMonster;
+import Decorator.StrongMonster;
 import Game.Handler;
 import Game.UIImageButton;
 import Game.UIManager;
@@ -57,11 +58,30 @@ public class BattleState extends State{
 
 		monsters.add(radishMonster);
 		System.out.println("Added regular radish");
-		HealthyMonster healthyRadish = new HealthyMonster(radishMonster, 20);
+		
+		MonsterInterface healthyRadish = new Monster("Bad Radish", Asset.monsters[1], 23 * 4, 41 * 4, 480, 110, 10, 20, 1, handler);
+		healthyRadish = new HealthyMonster(healthyRadish, 20);
 		monsters.add(healthyRadish);
 		System.out.println("Added healthy radish");
+		
+		
+		MonsterInterface strongRadish = new Monster("Bad Radish", Asset.monsters[1], 23 * 4, 41 * 4, 480, 110, 10, 20, 1, handler);
+		strongRadish = new StrongMonster(strongRadish, 10);
+		monsters.add(strongRadish);
+		System.out.println("Added strong radish");
+		
 		monsters.add(new Monster("Green Slime", Asset.monsters[0], 38 * 4, 27 * 4, 440, 160, 30, 20, 1, handler));
 		System.out.println("Added green slime");
+		
+		MonsterInterface healthySlime = new Monster("Green Slime", Asset.monsters[0], 38 * 4, 27 * 4, 440, 160, 30, 20, 1, handler);
+		healthySlime = new HealthyMonster(healthySlime, 20);
+		monsters.add(healthySlime);
+		System.out.println("Added healthy slime");
+		
+		MonsterInterface strongSlime = new Monster("Green Slime", Asset.monsters[0], 38 * 4, 27 * 4, 440, 160, 30, 20, 1, handler);
+		strongSlime = new StrongMonster(strongSlime, 10);
+		monsters.add(strongSlime);
+		System.out.println("Added strong slime");
 		
 	
 		int randomMonster = (int) (Math.random() * monsters.size());
