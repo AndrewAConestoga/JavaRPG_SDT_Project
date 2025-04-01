@@ -54,7 +54,7 @@ public class MonsterBar {
 		this.id = id;
 		this.monster = monster;
 		randomTimer = (int)(minTimer * (id + 1) + (Math.random() * (maxTimer - minTimer)));
-		redDamageText = new Text(""+(monster.getAttack()*-1), 90, 640, 4, 3);
+		redDamageText = new Text("-" + monster.getAttack(), 90, 640, 4, 3);
 	}
 	
 	
