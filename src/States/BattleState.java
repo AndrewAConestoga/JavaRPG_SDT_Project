@@ -39,6 +39,7 @@ public class BattleState extends State{
 	public static boolean playerAttack;
 	public static boolean changedTurn;
 	public static boolean switchGameStates;
+	public int MONSTER_COUNT = 6;
 
 	/**
 	 * creates a new instance of BattleState
@@ -52,41 +53,44 @@ public class BattleState extends State{
 		this.handler = handler;
 		
 		
+		int randomMonster = (int) (Math.random() * MONSTER_COUNT);
 		
-		Monster radishMonster = new Monster("Bad Radish", Asset.monsters[1], 23 * 4, 41 * 4, 480, 110, 10, 20, 1, handler);
-
-
-		monsters.add(radishMonster);
-		System.out.println("Added regular radish");
+		MonsterInterface m = new Monster("Bad Radish", Asset.monsters[1], 23 * 4, 41 * 4, 480, 110, 10, 20, 1, handler);
+		if (randomMonster==0) {
+			m = new Monster("Bad Radish", Asset.monsters[1], 23 * 4, 41 * 4, 480, 110, 10, 20, 1, handler);
+			monsters.add(m);
+			System.out.println("Added regular radish");
+		}
+		else if (randomMonster==1) {
+			m = new Monster("Bad Radish", Asset.monsters[1], 23 * 4, 41 * 4, 480, 110, 10, 20, 1, handler);
+			m = new HealthyMonster(m, 20);
+			monsters.add(m);
+			System.out.println("Added healthy radish");
+		}
+		else if (randomMonster==2) {
+			m = new Monster("Bad Radish", Asset.monsters[1], 23 * 4, 41 * 4, 480, 110, 10, 20, 1, handler);
+			m = new StrongMonster(m, 10);
+			monsters.add(m);
+			System.out.println("Added strong radish");
+		}
+		else if (randomMonster==3) {
+			monsters.add(new Monster("Green Slime", Asset.monsters[0], 38 * 4, 27 * 4, 440, 160, 30, 20, 1, handler));
+			System.out.println("Added green slime");
+		}
+		else if (randomMonster==4) {
+			m = new Monster("Green Slime", Asset.monsters[0], 38 * 4, 27 * 4, 440, 160, 30, 20, 1, handler);
+			m = new HealthyMonster(m, 20);
+			monsters.add(m);
+			System.out.println("Added healthy slime");
+		}
+		else {
+			m = new Monster("Green Slime", Asset.monsters[0], 38 * 4, 27 * 4, 440, 160, 30, 20, 1, handler);
+			m = new StrongMonster(m, 10);
+			monsters.add(m);
+			System.out.println("Added strong slime");
+		}
 		
-		MonsterInterface healthyRadish = new Monster("Bad Radish", Asset.monsters[1], 23 * 4, 41 * 4, 480, 110, 10, 20, 1, handler);
-		healthyRadish = new HealthyMonster(healthyRadish, 20);
-		monsters.add(healthyRadish);
-		System.out.println("Added healthy radish");
-		
-		
-		MonsterInterface strongRadish = new Monster("Bad Radish", Asset.monsters[1], 23 * 4, 41 * 4, 480, 110, 10, 20, 1, handler);
-		strongRadish = new StrongMonster(strongRadish, 10);
-		monsters.add(strongRadish);
-		System.out.println("Added strong radish");
-		
-		monsters.add(new Monster("Green Slime", Asset.monsters[0], 38 * 4, 27 * 4, 440, 160, 30, 20, 1, handler));
-		System.out.println("Added green slime");
-		
-		MonsterInterface healthySlime = new Monster("Green Slime", Asset.monsters[0], 38 * 4, 27 * 4, 440, 160, 30, 20, 1, handler);
-		healthySlime = new HealthyMonster(healthySlime, 20);
-		monsters.add(healthySlime);
-		System.out.println("Added healthy slime");
-		
-		MonsterInterface strongSlime = new Monster("Green Slime", Asset.monsters[0], 38 * 4, 27 * 4, 440, 160, 30, 20, 1, handler);
-		strongSlime = new StrongMonster(strongSlime, 10);
-		monsters.add(strongSlime);
-		System.out.println("Added strong slime");
-		
-	
-		int randomMonster = (int) (Math.random() * monsters.size());
-		System.out.println("random Monster number:" + randomMonster);
-		monster = monsters.get(randomMonster);
+		monster = m;
 		inGamePlayer = new InGamePlayer(handler);
 		attackBarManager = new AttackBarManager(handler);
 		switchGameStates = false;
