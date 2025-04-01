@@ -79,7 +79,7 @@ public class BattleState extends State{
 		}
 		else if (randomMonster==4) {
 			m = new Monster("Green Slime", Asset.monsters[0], 38 * 4, 27 * 4, 440, 160, 30, 20, 1, handler);
-			m = new HealthyMonster(m, 20);
+			m = new HealthyMonster(m, 40);
 			monsters.add(m);
 			System.out.println("Added healthy slime");
 		}
